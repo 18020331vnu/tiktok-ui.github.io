@@ -1,0 +1,23 @@
+import './App.css'
+import { publicRoutes } from './routes'
+import { Routes, Route } from 'react-router-dom'
+import NotFound from './pages/Error/Error'
+
+function App() {
+   return (
+      <div className="App">
+         <Routes>
+            {publicRoutes.map((route) => (
+               <Route
+                  key={route.path}
+                  path={route.path}
+                  element={route.component}
+               />
+            ))}
+            <Route path="*" element={<NotFound />} />
+         </Routes>
+      </div>
+   )
+}
+
+export default App

@@ -10,7 +10,7 @@ function AccountItem({ username, avatar, fullName, tick, onClick }) {
             src={
                avatar !== 'https://files.fullstack.edu.vn/f8-tiktok/'
                   ? avatar
-                  : `https://p16-sign-sg.tiktokcdn.com/aweme/100x100/tiktok-obj/1610321846996993.jpeg?x-expires=1674187200&x-signature=I0EHf7Ls9MbPB1ogK%2FIVSyP8Jjo%3D`
+                  : `https://p16-sign-sg.tiktokcdn.com/aweme/100x100/tiktok-obj/1610321846996993.jpeg?x-expires=1674550800&x-signature=KLRr8%2Bn3J5Rib5fERj5JLgCVeGQ%3D`
             }
             alt=""
             className="w-10 h-10 rounded-full mr-3"

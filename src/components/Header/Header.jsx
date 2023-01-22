@@ -132,7 +132,7 @@ function Header() {
                   >
                      <div className="ml-6 cursor-pointer">
                         <img
-                           src="https://p16-sign-sg.tiktokcdn.com/aweme/100x100/tiktok-obj/1610321846996993.jpeg?x-expires=1674187200&x-signature=I0EHf7Ls9MbPB1ogK%2FIVSyP8Jjo%3D"
+                           src="https://p16-sign-sg.tiktokcdn.com/aweme/100x100/tiktok-obj/1610321846996993.jpeg?x-expires=1674550800&x-signature=KLRr8%2Bn3J5Rib5fERj5JLgCVeGQ%3D"
                            alt="avatar"
                            className=" w-8 h-8  rounded-full"
                         />

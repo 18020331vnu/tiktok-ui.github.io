@@ -1,6 +1,8 @@
 import TippyHeadless from '@tippyjs/react/headless'
 import React, { useEffect, useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import searchApi from '../../api/searchApi'
+import useDebounce from '../../hooks/useDebounce'
 import AccountItem from '../AccountItem/AccountItem'
 import {
    CloseIcon,
@@ -14,33 +16,36 @@ function HeaderSearch() {
    const [searchResult, setSearchResult] = useState([])
    const [showLoading, setShowLoading] = useState(false)
    const [showPopover, setShowPopover] = useState(true)
+
    const inputRef = useRef()
-   const closeBtnRef = useRef()
    const navigate = useNavigate()
 
-   useEffect(() => {
-      const timeoutId = setTimeout(() => {
-         if (inputValue.trim() !== '') {
-            const url = `https://tiktok.fullstack.edu.vn/api/users/search?q=${encodeURIComponent(
-               inputValue
-            )}&type=less`
-            setShowLoading(true)
-            fetch(url)
-               .then((res) => res.json())
-               .then((result) => {
-                  console.log(result.data)
-                  setSearchResult(result.data)
-                  setShowLoading(false)
-               })
-         }
-      }, 500)
-      return () => {
-         clearTimeout(timeoutId)
-      }
-   }, [inputValue])
+   const debounceInputValue = useDebounce(inputValue, 700)
 
-   const handleShowPopover = () => {
-      setShowPopover(false)
+   useEffect(() => {
+      const getSearchResult = async () => {
+         setShowLoading(true)
+         const response = await searchApi.getAll({
+            q: debounceInputValue,
+            type: 'less',
+         })
+         setSearchResult(response.data)
+         setShowLoading(false)
+      }
+      if (inputValue.trim() !== '') {
+         getSearchResult()
+      }
+   }, [debounceInputValue])
+
+   const handleInputChange = (e) => {
+      if (e.target.value.trim() === '') {
+         setShowPopover(false)
+         setInputValue(e.target.value.trim())
+      } else {
+         setShowPopover(true)
+         setSearchResult([])
+         setInputValue(e.target.value)
+      }
    }
 
    const handleRouterChange = (username) => {
@@ -50,7 +55,9 @@ function HeaderSearch() {
       <TippyHeadless
          visible={showPopover && searchResult.length > 0}
          interactive
-         onClickOutside={handleShowPopover}
+         onClickOutside={() => {
+            setShowPopover(false)
+         }}
          render={(attr) => (
             <Popover>
                <div className="text-[#16182380] text-sm py-[5px] px-3 text-left pt-2 rounded-lg font-semibold">
@@ -79,22 +86,9 @@ function HeaderSearch() {
                ref={inputRef}
                value={inputValue}
                type="text"
-               onChange={(e) => {
-                  if (e.target.value.trim() === '') {
-                     setShowPopover(false)
-                  } else {
-                     setShowPopover(true)
-                     setSearchResult([])
-                  }
-                  setInputValue(e.target.value)
-               }}
+               onChange={handleInputChange}
                onFocus={() => {
                   setShowPopover(true)
-                  setTimeout(function () {
-                     inputRef.current.selectionStart =
-                        inputRef.current.selectionEnd =
-                           inputRef.current.value.length
-                  }, 0)
                }}
                placeholder="Tìm kiếm tài khoản và video"
                className="font-normal bg-transparent w-[252px] flex-shrink-0 ml-4 outline-none text-base caret-rose-500 peer placeholder-shown:w-[292px]"
@@ -103,7 +97,6 @@ function HeaderSearch() {
             {/* Close button */}
             {!showLoading && (
                <button
-                  ref={closeBtnRef}
                   className="px-3 block peer-placeholder-shown:hidden"
                   onClick={() => {
                      setSearchResult([])

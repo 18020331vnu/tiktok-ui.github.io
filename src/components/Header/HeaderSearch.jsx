@@ -23,6 +23,10 @@ function HeaderSearch() {
    const debounceInputValue = useDebounce(inputValue, 700)
 
    useEffect(() => {
+      if (inputValue === '') {
+         setSearchResult([])
+         return
+      }
       const getSearchResult = async () => {
          try {
             setShowLoading(true)
@@ -36,20 +40,19 @@ function HeaderSearch() {
             setShowLoading(false)
          }
       }
-      if (inputValue.trim() !== '') {
-         getSearchResult()
-      }
+      getSearchResult()
    }, [debounceInputValue])
 
    const handleInputChange = (e) => {
-      if (e.target.value.trim() === '') {
-         setShowPopover(false)
-         setInputValue(e.target.value.trim())
-      } else {
-         setShowPopover(true)
-         // setSearchResult([])
-         setInputValue(e.target.value)
+      const searchValue = e.target.value
+      if (searchValue === '') {
+         setInputValue('')
+         setSearchResult([])
+         return
       }
+      setInputValue(
+         searchValue.startsWith(' ') ? searchValue.trim() : searchValue
+      )
    }
 
    const handleRouterChange = (username) => {

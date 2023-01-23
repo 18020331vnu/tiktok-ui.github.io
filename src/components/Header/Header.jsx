@@ -40,6 +40,118 @@ function Header() {
                   locale: 'en',
                   content: 'English',
                },
+               {
+                  locale: 'vi',
+                  content: 'Tiếng Việt',
+               },
+               {
+                  locale: 'en',
+                  content: 'English',
+               },
+               {
+                  locale: 'vi',
+                  content: 'Tiếng Việt',
+               },
+               {
+                  locale: 'en',
+                  content: 'English',
+               },
+               {
+                  locale: 'vi',
+                  content: 'Tiếng Việt',
+               },
+               {
+                  locale: 'en',
+                  content: 'English',
+               },
+               {
+                  locale: 'vi',
+                  content: 'Tiếng Việt',
+               },
+               {
+                  locale: 'en',
+                  content: 'English',
+               },
+               {
+                  locale: 'vi',
+                  content: 'Tiếng Việt',
+               },
+               {
+                  locale: 'en',
+                  content: 'English',
+               },
+               {
+                  locale: 'vi',
+                  content: 'Tiếng Việt',
+               },
+               {
+                  locale: 'en',
+                  content: 'English',
+               },
+               {
+                  locale: 'vi',
+                  content: 'Tiếng Việt',
+               },
+               {
+                  locale: 'en',
+                  content: 'English',
+               },
+               {
+                  locale: 'vi',
+                  content: 'Tiếng Việt',
+               },
+               {
+                  locale: 'en',
+                  content: 'English',
+               },
+               {
+                  locale: 'vi',
+                  content: 'Tiếng Việt',
+               },
+               {
+                  locale: 'en',
+                  content: 'English',
+               },
+               {
+                  locale: 'vi',
+                  content: 'Tiếng Việt',
+               },
+               {
+                  locale: 'en',
+                  content: 'English',
+               },
+               {
+                  locale: 'vi',
+                  content: 'Tiếng Việt',
+               },
+               {
+                  locale: 'en',
+                  content: 'English',
+               },
+               {
+                  locale: 'vi',
+                  content: 'Tiếng Việt',
+               },
+               {
+                  locale: 'en',
+                  content: 'English',
+               },
+               {
+                  locale: 'vi',
+                  content: 'Tiếng Việt',
+               },
+               {
+                  locale: 'en',
+                  content: 'English',
+               },
+               {
+                  locale: 'vi',
+                  content: 'Tiếng Việt',
+               },
+               {
+                  locale: 'en',
+                  content: 'English',
+               },
             ],
          },
       },
@@ -96,7 +208,11 @@ function Header() {
             <Button to={'/'} className="">
                <Logo className={'w-[118px] h-[42px]'} />
             </Button>
-            <HeaderSearch />
+
+            {/* Using a wrapper <div> or <span> tag around the reference element solves this by creating a new parentNode context. */}
+            <div>
+               <HeaderSearch />
+            </div>
 
             {isLogin && (
                <div className="flex items-center">

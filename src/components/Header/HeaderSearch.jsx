@@ -24,13 +24,17 @@ function HeaderSearch() {
 
    useEffect(() => {
       const getSearchResult = async () => {
-         setShowLoading(true)
-         const response = await searchApi.getAll({
-            q: debounceInputValue,
-            type: 'less',
-         })
-         setSearchResult(response.data)
-         setShowLoading(false)
+         try {
+            setShowLoading(true)
+            const response = await searchApi.getAll({
+               q: debounceInputValue,
+               type: 'less',
+            })
+            setSearchResult(response.data)
+            setShowLoading(false)
+         } catch (error) {
+            setShowLoading(false)
+         }
       }
       if (inputValue.trim() !== '') {
          getSearchResult()
@@ -43,7 +47,7 @@ function HeaderSearch() {
          setInputValue(e.target.value.trim())
       } else {
          setShowPopover(true)
-         setSearchResult([])
+         // setSearchResult([])
          setInputValue(e.target.value)
       }
    }
@@ -51,6 +55,7 @@ function HeaderSearch() {
    const handleRouterChange = (username) => {
       navigate(`/@${username}`)
    }
+
    return (
       <TippyHeadless
          visible={showPopover && searchResult.length > 0}

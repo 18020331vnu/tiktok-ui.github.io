@@ -1,4 +1,5 @@
 import Tippy from '@tippyjs/react/headless'
+import PropTypes from 'prop-types'
 import { useState } from 'react'
 import Button from '../Button/Button'
 import Popover from './Popover'
@@ -68,6 +69,13 @@ function PopoverMenu({ children, data, delay, placement }) {
          {children}
       </Tippy>
    )
+}
+
+PopoverMenu.propTypes = {
+   children: PropTypes.node.isRequired,
+   data: PropTypes.array.isRequired,
+   delay: PropTypes.number,
+   placement: PropTypes.string,
 }
 
 export default PopoverMenu

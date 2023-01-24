@@ -1,3 +1,5 @@
+import React from 'react'
+import PropTypes from 'prop-types'
 import { VerifyBagdeIcon } from '../Icons/HeaderIcons/HeaderIcon'
 
 function AccountItem({ username, avatar, fullName, tick, onClick }) {
@@ -28,4 +30,11 @@ function AccountItem({ username, avatar, fullName, tick, onClick }) {
    )
 }
 
+AccountItem.propTypes = {
+   username: PropTypes.string,
+   avatar: PropTypes.string,
+   fullName: PropTypes.string,
+   tick: PropTypes.bool,
+   onClick: PropTypes.func,
+}
 export default AccountItem

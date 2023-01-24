@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 
 function Button({ to, href, onClick, className = '', children }) {
@@ -13,6 +14,14 @@ function Button({ to, href, onClick, className = '', children }) {
          {children}
       </Type>
    )
+}
+
+Button.propTypes = {
+   to: PropTypes.string,
+   href: PropTypes.string,
+   onClick: PropTypes.func,
+   className: PropTypes.string,
+   children: PropTypes.node,
 }
 
 export default Button

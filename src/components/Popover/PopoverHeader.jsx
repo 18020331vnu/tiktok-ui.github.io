@@ -1,5 +1,5 @@
 import React from 'react'
-
+import PropTypes from 'prop-types'
 function PopoverHeader({ header, onClick }) {
    return (
       <div
@@ -24,6 +24,11 @@ function PopoverHeader({ header, onClick }) {
          <p className="text-base font-semibold">{header}</p>
       </div>
    )
+}
+
+PopoverHeader.propTypes = {
+   header: PropTypes.string.isRequired,
+   onClick: PropTypes.func.isRequired,
 }
 
 export default PopoverHeader

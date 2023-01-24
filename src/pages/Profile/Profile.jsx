@@ -1,5 +1,5 @@
 import React from 'react'
-import DefaultLayout from '../../components/DefaultLayout/DefaultLayout'
+import DefaultLayout from '../../layouts/DefaultLayout'
 
 function Profile() {
    return (

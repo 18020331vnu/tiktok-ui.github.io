@@ -1,4 +1,4 @@
-import DefaultLayout from '../../components/DefaultLayout/DefaultLayout'
+import DefaultLayout from '../../layouts/DefaultLayout'
 
 function Following() {
    return <DefaultLayout>Following Page</DefaultLayout>

@@ -56,6 +56,7 @@ function HeaderSearch() {
    }
 
    const handleRouterChange = (username) => {
+      setSearchResult([])
       navigate(`/@${username}`)
    }
 
@@ -74,8 +75,8 @@ function HeaderSearch() {
                   </div>
                   {searchResult.map((item) => (
                      <AccountItem
-                        onClick={() => handleRouterChange(item.nickname)}
                         key={item.id}
+                        onClick={() => handleRouterChange(item.nickname)}
                         username={item.nickname}
                         avatar={item.avatar}
                         fullName={item.full_name}

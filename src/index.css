@@ -49,6 +49,7 @@ video {
 body {
    min-height: 100vh;
    font-family: 'Quicksand';
+   overflow: overlay;
 }
 
 :root {

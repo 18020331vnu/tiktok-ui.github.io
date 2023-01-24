@@ -31,7 +31,7 @@ function PopoverMenu({ children, data, delay, placement }) {
                   />
                )}
                <div
-                  className={`overflow-y-auto overscroll-contain scrollbar-thumb-transparent hover:scrollbar-thin hover:scrollbar-thumb-[#000] ${
+                  className={`overscroll-contain scrollbar-thin scrollbar-thumb-[#16182342] ${
                      history.length > 1 ? 'max-h-96' : ''
                   }`}
                >

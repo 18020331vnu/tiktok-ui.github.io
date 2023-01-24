@@ -1,4 +1,4 @@
-import Tippy from '@tippyjs/react/headless'
+import HeadlessTippy from '@tippyjs/react/headless'
 import { useState } from 'react'
 import Button from '../Button/Button'
 import Popover from './Popover'
@@ -9,9 +9,9 @@ function PopoverMenu({ children, data, delay, placement }) {
    const currentMenu = history[history.length - 1]
 
    return (
-      <Tippy
-         offset={[12, 8]}
+      <HeadlessTippy
          hideOnClick={false}
+         offset={[12, 8]}
          onHidden={() => {
             setHistory([{ data }])
          }}
@@ -30,37 +30,44 @@ function PopoverMenu({ children, data, delay, placement }) {
                      }}
                   />
                )}
-               {currentMenu.data.map((item) => {
-                  const separateClass = item.seperate
-                     ? 'border-t border-bg-gray-200'
-                     : ''
-                  return (
-                     <Button
-                        key={item.content}
-                        to={item.to}
-                        onClick={() => {
-                           if (item.children) {
-                              setHistory([
-                                 ...history,
-                                 {
-                                    header: item.children.header,
-                                    data: item.children.content,
-                                 },
-                              ])
-                           }
-                        }}
-                        className={`hover:bg-gray-100 items-start justify-start py-[10px] pr-2 pl-4 w-full ${separateClass}`}
-                     >
-                        {item.icon && <item.icon className="w-5 h-5 mr-2" />}
-                        <span className="font-semibold">{item.content}</span>
-                     </Button>
-                  )
-               })}
+               {}
+               <div
+                  className={`overflow-y-auto scrollbar scrollbar-thumb-slate-200 overscroll-contain ${
+                     history.length > 1 ? 'max-h-96' : ''
+                  }`}
+               >
+                  {currentMenu.data.map((item, index) => {
+                     const separateClass = item.seperate
+                        ? 'border-t border-bg-gray-200'
+                        : ''
+                     return (
+                        <Button
+                           key={index}
+                           to={item.to}
+                           onClick={() => {
+                              if (item.children) {
+                                 setHistory([
+                                    ...history,
+                                    {
+                                       header: item.children.header,
+                                       data: item.children.content,
+                                    },
+                                 ])
+                              }
+                           }}
+                           className={`hover:bg-gray-100 items-start justify-start py-[10px] pr-2 pl-4 w-full ${separateClass}`}
+                        >
+                           {item.icon && <item.icon className="w-5 h-5 mr-2" />}
+                           <span className="font-semibold">{item.content}</span>
+                        </Button>
+                     )
+                  })}
+               </div>
             </Popover>
          )}
       >
          {children}
-      </Tippy>
+      </HeadlessTippy>
    )
 }
 

@@ -1,6 +1,6 @@
-function Popover({ children, className = '' }) {
+function Popover({ children }) {
    return (
-      <div className={`bg-white shadow-popoverShadow rounded-lg ${className}`}>
+      <div className="overflow-hidden overflow-y-auto rounded-lg bg-white shadow-popoverShadow">
          {children}
       </div>
    )

@@ -4,11 +4,11 @@ function PopoverHeader({ header, onClick }) {
    return (
       <div
          onClick={onClick}
-         className="relative h-[50px] flex items-center justify-center min-w-[223px] cursor-pointer"
+         className="relative flex h-[50px] min-w-[223px] cursor-pointer items-center justify-center"
       >
          <i className="absolute left-7 flex justify-center">
             <svg
-               className="w-5 h-5"
+               className="h-5 w-5"
                data-e2e=""
                viewBox="0 0 48 48"
                fill="currentColor"
@@ -21,7 +21,7 @@ function PopoverHeader({ header, onClick }) {
                ></path>
             </svg>
          </i>
-         <p className="font-semibold text-base">{header}</p>
+         <p className="text-base font-semibold">{header}</p>
       </div>
    )
 }

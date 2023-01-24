@@ -3,10 +3,10 @@ import Button from '../../components/Button/Button'
 
 function NotFound() {
    return (
-      <div className="flex justify-center items-center h-screen flex-col">
+      <div className="flex h-screen flex-col items-center justify-center">
          <h4>Oops...NotFound 404</h4>
-         <Link className="border  inline-block rounded-md mt-4" to="/">
-            <Button className="hover:bg-slate-200 px-3 py-2">
+         <Link className="mt-4 inline-block rounded-md border" to="/">
+            <Button className="px-3 py-2 hover:bg-slate-200">
                Return to Homepage
             </Button>
          </Link>

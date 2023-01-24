@@ -1,7 +1,7 @@
-// import DefaultLayout from './../../components/DefaultLayout/DefaultLayout'
+import DefaultLayout from '../../components/DefaultLayout/DefaultLayout'
 
 function Following() {
-   return <DefaultLayout>FollowingPage</DefaultLayout>
+   return <DefaultLayout>Following Page</DefaultLayout>
 }
 
 export default Following

@@ -203,10 +203,10 @@ function Header() {
    ]
 
    return (
-      <div className="h-[var(--header-height)] shadow-sm flex justify-center w-full fixed top-0 backdrop-blur-md">
-         <div className="w-[1150px] h-full flex items-center justify-between pl-5 pr-6">
+      <div className="fixed top-0 flex h-[var(--header-height)] w-full justify-center shadow-sm backdrop-blur-md">
+         <div className="flex h-full w-[1150px] items-center justify-between pl-5 pr-6">
             <Button to={'/'} className="">
-               <Logo className={'w-[118px] h-[42px]'} />
+               <Logo className={'h-[42px] w-[118px]'} />
             </Button>
 
             {/* Using a wrapper <div> or <span> tag around the reference element solves this by creating a new parentNode context. */}
@@ -219,9 +219,9 @@ function Header() {
                   {/* Upload button */}
                   <Button
                      to="/upload"
-                     className="justify-center font-semibold py-[5px] px-4 border border-gray-300 rounded hover:bg-gray-100"
+                     className="justify-center rounded border border-gray-300 py-[5px] px-4 font-semibold hover:bg-gray-100"
                   >
-                     <UploadIcon className={'w-5 h-5 mr-2'} />
+                     <UploadIcon className={'mr-2 h-5 w-5'} />
                      <span>Tải lên</span>
                   </Button>
 
@@ -229,7 +229,7 @@ function Header() {
                   <Tippy content="Tin nhắn">
                      <button className="ml-5">
                         <MessageIcon
-                           className={'w-[26px] h-[26px] pt-6px pr-6px'}
+                           className={'pt-6px pr-6px h-[26px] w-[26px]'}
                         />
                      </button>
                   </Tippy>
@@ -237,7 +237,7 @@ function Header() {
                   {/* Inbox button */}
                   <Tippy content="Hộp thư">
                      <button className="ml-5">
-                        <InboxIcon className={'w-8 h-8'} />
+                        <InboxIcon className={'h-8 w-8'} />
                      </button>
                   </Tippy>
 
@@ -250,24 +250,24 @@ function Header() {
                         <img
                            src="https://p16-sign-sg.tiktokcdn.com/aweme/100x100/tiktok-obj/1610321846996993.jpeg?x-expires=1674550800&x-signature=KLRr8%2Bn3J5Rib5fERj5JLgCVeGQ%3D"
                            alt="avatar"
-                           className=" w-8 h-8  rounded-full"
+                           className=" h-8 w-8  rounded-full"
                         />
                      </div>
                   </PopoverMenu>
                </div>
             )}
             {!isLogin && (
-               <div className="flex item-center">
+               <div className="item-center flex">
                   <Button
                      to="/upload"
-                     className="font-semibold justify-center py-[5px] px-4 border border-gray-300 rounded hover:bg-gray-100"
+                     className="justify-center rounded border border-gray-300 py-[5px] px-4 font-semibold hover:bg-gray-100"
                   >
-                     <UploadIcon className={'w-5 h-5 mr-2'} />
+                     <UploadIcon className={'mr-2 h-5 w-5'} />
                      <span>Tải lên</span>
                   </Button>
                   <Button
                      to={'/login'}
-                     className="font-semibold justify-center border-none rounded text-white bg-primaryColor py-[6px] w-[120px] ml-4 hover:bg-[#e83256]"
+                     className="ml-4 w-[120px] justify-center rounded border-none bg-primaryColor py-[6px] font-semibold text-white hover:bg-[#e83256]"
                   >
                      Đăng nhập
                   </Button>
@@ -277,8 +277,8 @@ function Header() {
                      delay={[0, 700]}
                      data={MENU_ITEMS}
                   >
-                     <i className="flex items-center cursor-pointer pl-4">
-                        <MoreIcon className={'w-5 h-5'} />
+                     <i className="flex cursor-pointer items-center pl-4">
+                        <MoreIcon className={'h-5 w-5'} />
                      </i>
                   </PopoverMenu>
                </div>

@@ -1,4 +1,4 @@
-import HeadlessTippy from '@tippyjs/react/headless'
+import Tippy from '@tippyjs/react/headless'
 import { useState } from 'react'
 import Button from '../Button/Button'
 import Popover from './Popover'
@@ -9,9 +9,9 @@ function PopoverMenu({ children, data, delay, placement }) {
    const currentMenu = history[history.length - 1]
 
    return (
-      <HeadlessTippy
-         hideOnClick={false}
+      <Tippy
          offset={[12, 8]}
+         hideOnClick={false}
          onHidden={() => {
             setHistory([{ data }])
          }}
@@ -30,9 +30,8 @@ function PopoverMenu({ children, data, delay, placement }) {
                      }}
                   />
                )}
-               {}
                <div
-                  className={`overflow-y-auto scrollbar scrollbar-thumb-slate-200 overscroll-contain ${
+                  className={`overflow-y-auto overscroll-contain scrollbar-thumb-transparent hover:scrollbar-thin hover:scrollbar-thumb-[#000] ${
                      history.length > 1 ? 'max-h-96' : ''
                   }`}
                >
@@ -55,9 +54,9 @@ function PopoverMenu({ children, data, delay, placement }) {
                                  ])
                               }
                            }}
-                           className={`hover:bg-gray-100 items-start justify-start py-[10px] pr-2 pl-4 w-full ${separateClass}`}
+                           className={`w-full items-start justify-start py-[10px] pr-2 pl-4 hover:bg-gray-100 ${separateClass}`}
                         >
-                           {item.icon && <item.icon className="w-5 h-5 mr-2" />}
+                           {item.icon && <item.icon className="mr-2 h-5 w-5" />}
                            <span className="font-semibold">{item.content}</span>
                         </Button>
                      )
@@ -67,7 +66,7 @@ function PopoverMenu({ children, data, delay, placement }) {
          )}
       >
          {children}
-      </HeadlessTippy>
+      </Tippy>
    )
 }
 

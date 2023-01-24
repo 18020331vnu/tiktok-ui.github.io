@@ -69,7 +69,7 @@ function HeaderSearch() {
             }}
             render={(attr) => (
                <Popover>
-                  <div className="text-[#16182380] text-sm py-[5px] px-3 text-left pt-2 rounded-lg font-semibold">
+                  <div className="rounded-lg py-[5px] px-3 pt-2 text-left text-sm font-semibold text-[#16182380]">
                      Tài khoản
                   </div>
                   {searchResult.map((item) => (
@@ -83,13 +83,13 @@ function HeaderSearch() {
                      />
                   ))}
 
-                  <p className="text-left text-16 leading-[22px] py-[15px] px-4 hover:bg-[#16182308] cursor-pointer font-semibold">
+                  <p className="text-16 cursor-pointer py-[15px] px-4 text-left font-semibold leading-[22px] hover:bg-[#16182308]">
                      Xem tất cả kết quả cho "{inputValue}"
                   </p>
                </Popover>
             )}
          >
-            <div className="relative flex items-center bg-[#1618230f] w-[361px] rounded-md flex-shrink-0 overflow-hidden">
+            <div className="relative flex w-[361px] flex-shrink-0 items-center overflow-hidden rounded-md bg-[#1618230f]">
                {/* Input search */}
                <input
                   ref={inputRef}
@@ -100,13 +100,13 @@ function HeaderSearch() {
                      setShowPopover(true)
                   }}
                   placeholder="Tìm kiếm tài khoản và video"
-                  className="font-normal bg-transparent w-[252px] flex-shrink-0 ml-4 outline-none text-base caret-rose-500 peer placeholder-shown:w-[292px]"
+                  className="peer ml-4 w-[252px] flex-shrink-0 bg-transparent text-base font-normal caret-rose-500 outline-none placeholder-shown:w-[292px]"
                />
 
                {/* Close button */}
                {!showLoading && (
                   <button
-                     className="px-3 block peer-placeholder-shown:hidden"
+                     className="block px-3 peer-placeholder-shown:hidden"
                      onClick={() => {
                         setSearchResult([])
                         setInputValue('')
@@ -125,14 +125,14 @@ function HeaderSearch() {
                )}
 
                {/* Split bar */}
-               <span className="w-[1px] h-7 bg-slate-300"></span>
+               <span className="h-7 w-[1px] bg-slate-300"></span>
 
                {/* Search icon */}
 
-               <button className="py-[11px] pl-3 pr-4 opacity-70 bg-[rgba(22, 24, 35, .34)] fill-[#161823bf] hover:bg-gray-200 h-full peer-placeholder-shown:fill-[#16182357]">
+               <button className="bg-[rgba(22, 24, 35, .34)] h-full fill-[#161823bf] py-[11px] pl-3 pr-4 opacity-70 peer-placeholder-shown:fill-[#16182357] hover:bg-gray-200">
                   <SearchIcon className={''} />
                </button>
-               <div className="absolute inset-0 border-[1.5px] rounded-md border-transparent -z-[1] peer-focus-within:border-[#16182333]"></div>
+               <div className="absolute inset-0 -z-[1] rounded-md border-[1.5px] border-transparent peer-focus-within:border-[#16182333]"></div>
             </div>
          </HeadlessTippy>
       </>

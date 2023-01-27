@@ -1,12 +1,7 @@
 import React from 'react'
-import DefaultLayout from '../../layouts/DefaultLayout'
 
 function Profile() {
-   return (
-      <DefaultLayout>
-         <div>Profile</div>
-      </DefaultLayout>
-   )
+   return <div className="flex-grow">Profile</div>
 }
 
 export default Profile

@@ -1,4 +1,5 @@
 import Tippy from '@tippyjs/react'
+import { memo } from 'react'
 import 'tippy.js/dist/tippy.css'
 import Button from '../Button/Button'
 import {
@@ -7,7 +8,7 @@ import {
    MessageIcon,
    MoreIcon,
    UploadIcon,
-} from '../Icons/HeaderIcons/HeaderIcon'
+} from '../Icons/HeaderIcons/HeaderIcons'
 import {
    BusinessIcon,
    FeedbackIcon,
@@ -24,6 +25,7 @@ import PopoverMenu from '../Popover/PopoverMenu'
 import HeaderSearch from './HeaderSearch'
 
 function Header() {
+   console.log('re-render Header')
    let isLogin = true
    const MENU_ITEMS = [
       {
@@ -59,6 +61,7 @@ function Header() {
    ]
    const LOGIN_MENU_ITEMS = [
       {
+         to: '/ciin',
          icon: ProfileIcon,
          content: 'Xem hồ sơ',
       },
@@ -176,4 +179,4 @@ function Header() {
    )
 }
 
-export default Header
+export default memo(Header)

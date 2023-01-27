@@ -1,7 +1,5 @@
-import DefaultLayout from '../../layouts/DefaultLayout'
-
 function Following() {
-   return <DefaultLayout>Following Page</DefaultLayout>
+   return <div className="flex-grow">Following</div>
 }
 
 export default Following

@@ -1,9 +1,13 @@
 import axiosClient from './axiosClient'
 
 const userApi = {
-   getAll: (params) => {
-      const url = '/user/search'
+   getSuggest: (params) => {
+      const url = '/users/suggested'
       return axiosClient.get(url, { params })
+   },
+   get: (id) => {
+      const url = `/users/@${id}`
+      return axiosClient.get(url)
    },
 }
 export default userApi

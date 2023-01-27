@@ -8,6 +8,11 @@ module.exports = {
          },
          backgroundColor: {
             primaryColor: '#fe2c55',
+            hoverMainColor: '#16182308',
+         },
+         textColor: {
+            primaryColor: '#fe2c55',
+            textBoldColor: '#161823',
          },
       },
    },

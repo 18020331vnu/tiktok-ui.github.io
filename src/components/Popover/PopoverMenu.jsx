@@ -1,4 +1,4 @@
-import Tippy from '@tippyjs/react/headless'
+import HeadlessTippy from '@tippyjs/react/headless'
 import PropTypes from 'prop-types'
 import { useState } from 'react'
 import Button from '../Button/Button'
@@ -10,7 +10,7 @@ function PopoverMenu({ children, data, delay, placement }) {
    const currentMenu = history[history.length - 1]
 
    return (
-      <Tippy
+      <HeadlessTippy
          offset={[12, 8]}
          hideOnClick={false}
          onHidden={() => {
@@ -20,7 +20,7 @@ function PopoverMenu({ children, data, delay, placement }) {
          delay={delay}
          placement={placement}
          render={(attr) => (
-            <Popover>
+            <Popover className={'py-2'}>
                {history.length > 1 && (
                   <PopoverHeader
                      header={currentMenu.header}
@@ -67,14 +67,14 @@ function PopoverMenu({ children, data, delay, placement }) {
          )}
       >
          {children}
-      </Tippy>
+      </HeadlessTippy>
    )
 }
 
 PopoverMenu.propTypes = {
    children: PropTypes.node.isRequired,
    data: PropTypes.array.isRequired,
-   delay: PropTypes.number,
+   delay: PropTypes.oneOfType([PropTypes.number, PropTypes.array]),
    placement: PropTypes.string,
 }
 

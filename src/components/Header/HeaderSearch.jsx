@@ -1,17 +1,18 @@
 import HeadlessTippy from '@tippyjs/react/headless'
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useCallback, useEffect, useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import searchApi from '../../api/searchApi'
 import useDebounce from '../../hooks/useDebounce'
-import AccountItem from '../AccountItem/AccountItem'
+import AccountsList from '../AccountsList/AccountsList'
 import {
    CloseIcon,
    LoadingIcon,
    SearchIcon,
-} from '../Icons/HeaderIcons/HeaderIcon'
+} from '../Icons/HeaderIcons/HeaderIcons'
 import Popover from '../Popover/Popover'
 
 function HeaderSearch() {
+   console.log('re-render HeaderSearch')
    const [inputValue, setInputValue] = useState('')
    const [searchResult, setSearchResult] = useState([])
    const [showLoading, setShowLoading] = useState(false)
@@ -45,7 +46,7 @@ function HeaderSearch() {
 
    const handleInputChange = (e) => {
       const searchValue = e.target.value
-      if (searchValue === '') {
+      if (searchValue.trim() === '') {
          setInputValue('')
          setSearchResult([])
          return
@@ -55,10 +56,14 @@ function HeaderSearch() {
       )
    }
 
-   const handleRouterChange = (username) => {
-      setSearchResult([])
-      navigate(`/@${username}`)
-   }
+   const handleRouterChange = useCallback(
+      (username) => {
+         setInputValue('')
+         setSearchResult([])
+         navigate(`/@${username}`)
+      },
+      [searchResult]
+   )
 
    return (
       <>
@@ -69,22 +74,15 @@ function HeaderSearch() {
                setShowPopover(false)
             }}
             render={(attr) => (
-               <Popover>
-                  <div className="rounded-lg py-[5px] px-3 pt-2 text-left text-sm font-semibold text-[#16182380]">
-                     Tài khoản
-                  </div>
-                  {searchResult.map((item) => (
-                     <AccountItem
-                        key={item.id}
-                        onClick={() => handleRouterChange(item.nickname)}
-                        username={item.nickname}
-                        avatar={item.avatar}
-                        fullName={item.full_name}
-                        tick={item.tick}
-                     />
-                  ))}
+               <Popover className={'py-2'}>
+                  <AccountsList
+                     title={'Tài khoản'}
+                     data={searchResult}
+                     onClick={handleRouterChange}
+                     headerStyle={'px-3 py-[5px]'}
+                  />
 
-                  <p className="text-16 cursor-pointer py-[15px] px-4 text-left font-semibold leading-[22px] hover:bg-[#16182308]">
+                  <p className="text-16 cursor-pointer py-[15px] px-4 text-left font-semibold leading-[22px] hover:bg-hoverMainColor">
                      Xem tất cả kết quả cho "{inputValue}"
                   </p>
                </Popover>
@@ -131,7 +129,7 @@ function HeaderSearch() {
                {/* Search icon */}
 
                <button className="bg-[rgba(22, 24, 35, .34)] h-full fill-[#161823bf] py-[11px] pl-3 pr-4 opacity-70 peer-placeholder-shown:fill-[#16182357] hover:bg-gray-200">
-                  <SearchIcon className={''} />
+                  <SearchIcon />
                </button>
                <div className="absolute inset-0 -z-[1] rounded-md border-[1.5px] border-transparent peer-focus-within:border-[#16182333]"></div>
             </div>

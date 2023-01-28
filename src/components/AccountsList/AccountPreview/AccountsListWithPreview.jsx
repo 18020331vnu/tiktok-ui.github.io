@@ -19,7 +19,7 @@ function AccountsListWithPreview({ title, data, headerStyle, childStyle }) {
             {data.map((item) => (
                <AccountPreview data={item} key={item.id}>
                   <AccountItem
-                     onClick={() => onClick(item.nickname)}
+                     to={`/@${item.nickname}`}
                      username={item.nickname}
                      avatar={item.avatar}
                      firstName={item.first_name}

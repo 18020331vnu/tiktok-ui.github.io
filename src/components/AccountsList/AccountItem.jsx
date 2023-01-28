@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types'
 import React from 'react'
+import { Link } from 'react-router-dom'
 import { VerifyBagdeIcon } from '../Icons/HeaderIcons/HeaderIcons'
 
 function AccountItem({
@@ -12,7 +13,7 @@ function AccountItem({
    ...props
 }) {
    const { firstName, lastName } = { ...props }
-   const Type = to ? 'Link' : 'div'
+   const Type = to ? Link : 'div'
    return (
       <Type
          to={to}

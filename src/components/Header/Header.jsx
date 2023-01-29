@@ -61,7 +61,7 @@ function Header() {
    ]
    const LOGIN_MENU_ITEMS = [
       {
-         to: '/ciin',
+         to: '/@ciin',
          icon: ProfileIcon,
          content: 'Xem hồ sơ',
       },

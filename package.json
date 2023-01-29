@@ -3,19 +3,15 @@
    "private": true,
    "version": "0.0.0",
    "type": "module",
-   "homepage": "https://18020331vnu.github.io/tiktokui",
    "scripts": {
-      "predeploy": "npm run build",
-      "deploy": "gh-pages -d build",
       "dev": "vite --host",
       "build": "vite build",
-      "preview": "vite preview"
+      "preview": "npm run build && vite preview"
    },
    "dependencies": {
       "@headlessui/react": "^1.7.8",
       "@tippyjs/react": "^4.2.6",
       "axios": "^1.2.3",
-      "gh-pages": "^5.0.0",
       "prop-types": "^15.8.1",
       "query-string": "^8.1.0",
       "react": "^18.2.0",

@@ -66,7 +66,8 @@ function HeaderSearch() {
    )
 
    return (
-      <>
+      // Using a wrapper <div> or <span> tag around the reference element solves this by creating a new parentNode context.
+      <div>
          <HeadlessTippy
             visible={showPopover && searchResult.length > 0}
             interactive
@@ -134,7 +135,7 @@ function HeaderSearch() {
                <div className="absolute inset-0 -z-[1] rounded-md border-[1.5px] border-transparent peer-focus-within:border-[#16182333]"></div>
             </div>
          </HeadlessTippy>
-      </>
+      </div>
    )
 }
 

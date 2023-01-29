@@ -100,10 +100,7 @@ function Header() {
                <Logo className={'h-[42px] w-[118px]'} />
             </Button>
 
-            {/* Using a wrapper <div> or <span> tag around the reference element solves this by creating a new parentNode context. */}
-            <div>
-               <HeaderSearch />
-            </div>
+            <HeaderSearch />
 
             {isLogin && (
                <div className="flex items-center">
@@ -139,7 +136,7 @@ function Header() {
                   >
                      <div className="ml-6 cursor-pointer">
                         <img
-                           src="https://p16-sign-sg.tiktokcdn.com/aweme/100x100/tiktok-obj/1610321846996993.jpeg?x-expires=1674550800&x-signature=KLRr8%2Bn3J5Rib5fERj5JLgCVeGQ%3D"
+                           src="https://p16-sign-sg.tiktokcdn.com/aweme/100x100/tiktok-obj/1610321846996993.jpeg?x-expires=1675094400&x-signature=1X8lkhlnx5llsxYkl9H3Da9AowA%3D"
                            alt="avatar"
                            className=" h-8 w-8  rounded-full"
                         />

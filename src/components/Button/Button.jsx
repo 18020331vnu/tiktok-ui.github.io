@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 
-function Button({ to, href, onClick, className = '', children }) {
+function Button({ to, href, onClick, className, children }) {
    const Type = to ? Link : href ? 'a' : 'button'
    return (
       <Type
@@ -21,7 +21,7 @@ Button.propTypes = {
    href: PropTypes.string,
    onClick: PropTypes.func,
    className: PropTypes.string,
-   children: PropTypes.node,
+   children: PropTypes.node.isRequired,
 }
 
 export default Button

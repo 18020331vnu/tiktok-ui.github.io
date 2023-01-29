@@ -2,21 +2,14 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { NavLink } from 'react-router-dom'
 
-function SidebarNavigateItem({
-   to,
-   title,
-   icon,
-   activeIcon,
-   children,
-   ...props
-}) {
+function SidebarNavigateItem({ to, title, icon, activeIcon }) {
    return (
       <NavLink
-         className={({ isActive }) => {
-            return isActive
-               ? `flex h-12 w-[340px] items-center rounded p-2 text-primaryColor hover:bg-hoverMainColor`
-               : `flex h-12 w-[340px] items-center rounded p-2 text-textBoldColor hover:bg-hoverMainColor`
-         }}
+         className={({ isActive }) =>
+            `${
+               isActive ? 'text-primaryColor' : 'text-textBoldColor'
+            } flex h-12 w-[340px] items-center rounded p-2  hover:bg-hoverMainColor`
+         }
          to={to}
       >
          {({ isActive }) => (
@@ -29,6 +22,11 @@ function SidebarNavigateItem({
    )
 }
 
-SidebarNavigateItem.propTypes = {}
+SidebarNavigateItem.propTypes = {
+   to: PropTypes.string.isRequired,
+   title: PropTypes.string.isRequired,
+   icon: PropTypes.element.isRequired,
+   activeIcon: PropTypes.element.isRequired,
+}
 
 export default SidebarNavigateItem

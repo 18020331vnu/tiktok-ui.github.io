@@ -24,7 +24,7 @@ function AccountItem({
             src={
                avatar !== 'https://files.fullstack.edu.vn/f8-tiktok/'
                   ? avatar
-                  : `https://p16-sign-sg.tiktokcdn.com/aweme/100x100/tiktok-obj/1610321846996993.jpeg?x-expires=1674550800&x-signature=KLRr8%2Bn3J5Rib5fERj5JLgCVeGQ%3D`
+                  : `https://p16-sign-sg.tiktokcdn.com/aweme/100x100/tiktok-obj/1610321846996993.jpeg?x-expires=1675094400&x-signature=1X8lkhlnx5llsxYkl9H3Da9AowA%3D`
             }
             alt=""
             className="mr-3 h-10 w-10 rounded-full"
@@ -43,11 +43,11 @@ function AccountItem({
 }
 
 AccountItem.propTypes = {
-   username: PropTypes.string,
-   avatar: PropTypes.string,
-   fullName: PropTypes.string,
-   tick: PropTypes.bool,
+   username: PropTypes.string.isRequired,
+   avatar: PropTypes.string.isRequired,
+   tick: PropTypes.bool.isRequired,
    onClick: PropTypes.func,
    to: PropTypes.string,
+   className: PropTypes.string,
 }
 export default AccountItem

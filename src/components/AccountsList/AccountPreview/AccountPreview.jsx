@@ -1,13 +1,11 @@
 import HeadlessTippy from '@tippyjs/react/headless'
 import PropTypes from 'prop-types'
-import { useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import Button from '../../Button/Button'
 import { VerifyBagdeIcon } from '../../Icons/HeaderIcons/HeaderIcons'
 import Popover from '../../Popover/Popover'
-import AccountItem from '../AccountItem'
 
-function AccountPreview({ children, data, delay }) {
+function AccountPreview({ children, data }) {
    function renderPopover(attr) {
       return (
          <Popover className={'h-[170px] w-80 p-5 overflow-y-hidden'}>
@@ -69,21 +67,25 @@ function AccountPreview({ children, data, delay }) {
    }
 
    return (
-      <HeadlessTippy
-         // visible
-         interactive
-         delay={[700, 0]}
-         offset={[-20, 0]}
-         placement={'bottom'}
-         render={renderPopover}
-      >
-         <div>{children}</div>
-      </HeadlessTippy>
+      // Using a wrapper <div> or <span> tag around the reference element solves this by creating a new parentNode context.
+      <div>
+         <HeadlessTippy
+            // visible
+            interactive
+            delay={[700, 200]}
+            offset={[-20, 0]}
+            placement={'bottom'}
+            render={renderPopover}
+         >
+            <div>{children}</div>
+         </HeadlessTippy>
+      </div>
    )
 }
 
 AccountPreview.propTypes = {
    children: PropTypes.node.isRequired,
+   data: PropTypes.object.isRequired,
 }
 
 export default AccountPreview

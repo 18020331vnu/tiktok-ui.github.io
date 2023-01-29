@@ -11,6 +11,7 @@ function Popover({ children, className }) {
 
 Popover.propTypes = {
    children: PropTypes.node.isRequired,
+   className: PropTypes.string,
 }
 
 export default Popover

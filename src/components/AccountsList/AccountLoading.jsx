@@ -1,7 +1,6 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 
-function AccountLoading(props) {
+function AccountLoading() {
    return (
       <div
          className={`flex w-[full] animate-pulse cursor-pointer items-center rounded px-4 py-2 hover:bg-hoverMainColor`}

@@ -1,6 +1,4 @@
 import React from 'react'
-import PropTypes from 'prop-types'
-import SidebarNavigateItem from './SidebarNavigateItem'
 import {
    FollowingIcon,
    FollowingIconActive,
@@ -9,6 +7,7 @@ import {
    LiveIcon,
    LiveIconActive,
 } from '../Icons/SidebarIcons/SidebarIcons'
+import SidebarNavigateItem from './SidebarNavigateItem'
 
 function SidebarNavigate() {
    return (

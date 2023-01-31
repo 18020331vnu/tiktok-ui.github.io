@@ -10,12 +10,7 @@ function Upload() {
       }, 3000)
       return () => clearTimeout(timer)
    })
-   return (
-      <>
-         <Header />
-         Upload
-      </>
-   )
+   return <div>Upload</div>
 }
 
 export default Upload

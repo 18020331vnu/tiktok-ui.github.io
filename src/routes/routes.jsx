@@ -1,13 +1,15 @@
 import Following from '../pages/Following/Following'
 import Home from '../pages/Home/Home'
+import Home1 from '../pages/Home/Home1'
 import Live from '../pages/Live/Live'
+import Login from '../pages/Login/Login'
 import Profile from '../pages/Profile/Profile'
 import Upload from '../pages/Upload/Upload'
 
-export const publicRoutes = [
+export const defaultLayoutRoutes = [
    {
       path: '/',
-      element: <Home />,
+      element: <Home1 />,
    },
    {
       path: '/following',
@@ -22,10 +24,10 @@ export const publicRoutes = [
       element: <Live />,
    },
 ]
-
-export const privateRoutes = [
+export const headerOnlyRoutes = [
+   { path: '/login', element: <Login /> },
    {
       path: '/upload',
-      component: <Upload />,
+      element: <Upload />,
    },
 ]

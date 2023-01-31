@@ -1,29 +1,38 @@
 import './App.css'
 // import { publicRoutes } from './routes/routes'
-import { Routes, Route } from 'react-router-dom'
-import NotFound from './pages/Error/Error'
-import Home from './pages/Home/Home'
-import Following from './pages/Following/Following'
-import Profile from './pages/Profile/Profile'
-import Header from './components/Header/Header'
-import Sidebar from './components/Sidebar/Sidebar'
+import { Route, Routes } from 'react-router-dom'
 import DefaultLayout from './layouts/DefaultLayout'
-import { publicRoutes } from './routes/routes'
-import Login from './pages/Login/Login'
+import NotFound from './pages/Error/Error'
 import Upload from './pages/Upload/Upload'
+import { defaultLayoutRoutes, headerOnlyRoutes } from './routes/routes'
+import Header from './components/Header/Header'
 
 function App() {
    return (
       <div className="App">
          {/* <DefaultLayout> */}
          <Routes>
-            {publicRoutes.map((route) => (
+            {defaultLayoutRoutes.map((route) => (
                <Route
                   key={route.path}
                   path={route.path}
                   element={<DefaultLayout>{route.element}</DefaultLayout>}
                ></Route>
             ))}
+
+            {headerOnlyRoutes.map((route) => (
+               <Route
+                  key={route.path}
+                  path={route.path}
+                  element={
+                     <>
+                        <Header />
+                        {route.element}
+                     </>
+                  }
+               />
+            ))}
+
             <Route path="*" element={<NotFound />}></Route>
          </Routes>
       </div>

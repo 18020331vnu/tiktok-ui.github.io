@@ -1,5 +1,5 @@
 function Following() {
-   return <div className="flex-grow">Following</div>
+   return <div className="">Following</div>
 }
 
 export default Following

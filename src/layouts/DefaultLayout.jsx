@@ -8,7 +8,7 @@ function DefaultLayout({ children }) {
          <Header />
          <div className="mt-[var(--header-height)] flex w-[1150px] justify-center">
             <Sidebar />
-            <div className="flex-grow">{children}</div>
+            <div className="">{children}</div>
          </div>
       </div>
    )

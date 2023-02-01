@@ -75,7 +75,7 @@ function HeaderSearch() {
                setShowPopover(false)
             }}
             render={(attr) => (
-               <Popover className={'py-2'}>
+               <Popover className={'w-[361px] py-2'}>
                   <AccountsList
                      title={'Tài khoản'}
                      data={searchResult}

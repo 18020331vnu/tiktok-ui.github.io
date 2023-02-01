@@ -1,6 +1,7 @@
 import Tippy from '@tippyjs/react'
 import { memo } from 'react'
 import 'tippy.js/dist/tippy.css'
+import { LOGIN_MENU_ITEMS, MENU_ITEMS } from '../../constant/menuItem'
 import Button from '../Button/Button'
 import {
    InboxIcon,
@@ -9,92 +10,16 @@ import {
    MoreIcon,
    UploadIcon,
 } from '../Icons/HeaderIcons/HeaderIcons'
-import {
-   BusinessIcon,
-   FeedbackIcon,
-   KeyboardIcon,
-   LanguageIcon,
-   LiveIcon,
-   LogoutIcon,
-   ProfileIcon,
-   RechargeIcon,
-   SettingIcon,
-   ThemeIcon,
-} from '../Icons/HeaderIcons/PopoverIcons/PopoverIcons'
+
 import PopoverMenu from '../Popover/PopoverMenu'
 import HeaderSearch from './HeaderSearch'
 
 function Header() {
    console.log('re-render Header')
-   let isLogin = true
-   const MENU_ITEMS = [
-      {
-         icon: LanguageIcon,
-         content: 'Tiếng Việt',
-         children: {
-            header: 'Ngôn ngữ',
-            content: [
-               {
-                  locale: 'vi',
-                  content: 'Tiếng Việt',
-               },
-               {
-                  locale: 'en',
-                  content: 'English',
-               },
-            ],
-         },
-      },
-      {
-         icon: FeedbackIcon,
-         content: 'Phản hồi và trợ giúp',
-         to: '/feedback',
-      },
-      {
-         icon: KeyboardIcon,
-         content: 'Phím tắt trên bàn phím',
-      },
-      {
-         icon: ThemeIcon,
-         content: 'Chủ đề',
-      },
-   ]
-   const LOGIN_MENU_ITEMS = [
-      {
-         to: '/@ciin',
-         icon: ProfileIcon,
-         content: 'Xem hồ sơ',
-      },
-      {
-         icon: RechargeIcon,
-         content: 'Nhận Xu',
-         to: '/coin',
-      },
-      {
-         icon: LiveIcon,
-         content: 'LIVE Studio',
-      },
-      {
-         icon: BusinessIcon,
-         content: 'Bộ công cụ dành cho doanh nghiệp',
-         to: '/business-suite',
-      },
-      {
-         icon: SettingIcon,
-         content: 'Cài đặt',
-         to: '/setting',
-      },
-      ...MENU_ITEMS,
-      {
-         icon: LogoutIcon,
-         content: 'Đăng xuất',
-         to: '/logout',
-         seperate: true,
-      },
-   ]
+   let isLogin = !!localStorage.getItem('token')
 
    return (
-      <div className="fixed top-0 flex h-[var(--header-height)] w-full justify-center shadow-sm backdrop-blur-md">
+      <div className="fixed top-0 z-50 flex h-[var(--header-height)] w-full justify-center shadow-sm backdrop-blur-md">
          <div className="flex h-full w-[1150px] items-center justify-between pl-5 pr-6">
             <Button to={'/'} className="">
                <Logo className={'h-[42px] w-[118px]'} />

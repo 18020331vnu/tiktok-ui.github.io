@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types'
 import React from 'react'
-import AccountItem from '../AccountItem'
+import AccountItem from '../AccountsList/AccountItem'
 import AccountPreview from './AccountPreview'
 
 function AccountsListWithPreview({

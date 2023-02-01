@@ -17,7 +17,6 @@ function Sidebar() {
 
    const [suggestedPerPage, setsuggestedPerPage] = useState(5)
    const [followingPage, setFollowingPage] = useState(1)
-   console.log(followingAccountsList)
    useEffect(() => {
       const getSuggestAccounts = async () => {
          const response = await userApi.getSuggest({
@@ -34,7 +33,6 @@ function Sidebar() {
          const response = await followApi.getFollowingList({
             page: followingPage,
          })
-         console.log(response.meta.pagination.total)
          setFollowingCount(response.meta.pagination.total)
          setFollowingAccountList((prev) => {
             if (followingPage === 1) return response.data
@@ -46,7 +44,7 @@ function Sidebar() {
    }, [followingPage])
 
    return (
-      <div className="scrollbar-h-[40px] scrollbar-thump-hover-red-400 fixed top-[60px] left-[calc((100vw-1150px)/2)] z-50 max-h-[calc(100vh-60px)] w-[356px] overscroll-y-contain pt-5 pl-2 scrollbar-thin hover:scrollbar-thumb-slate-300">
+      <div className="scrollbar-h-[40px] scrollbar-thump-hover-red-400 fixed top-[60px] left-[calc((100vw-1150px)/2)] max-h-[calc(100vh-60px)] w-[356px] overscroll-y-contain pt-5 pl-2 scrollbar-thin hover:scrollbar-thumb-slate-300">
          <SidebarNavigate />
          {/* <AccountPreview /> */}
 

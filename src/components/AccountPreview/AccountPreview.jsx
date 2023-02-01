@@ -1,9 +1,9 @@
 import HeadlessTippy from '@tippyjs/react/headless'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
-import Button from '../../Button/Button'
-import { VerifyBagdeIcon } from '../../Icons/HeaderIcons/HeaderIcons'
-import Popover from '../../Popover/Popover'
+import Button from '../Button/Button'
+import { VerifyBagdeIcon } from '../Icons/HeaderIcons/HeaderIcons'
+import Popover from '../Popover/Popover'
 
 function AccountPreview({ children, data }) {
    function renderPopover(attr) {
@@ -27,9 +27,16 @@ function AccountPreview({ children, data }) {
                      }`}
                   />
                </Link>
-               <Button className="h-[34px] w-[106px] justify-center rounded bg-primaryColor text-base font-semibold text-white hover:bg-[#e83256] ">
-                  Follow
-               </Button>
+               {!data.is_followed && (
+                  <Button className="h-[34px] w-[106px] justify-center rounded bg-primaryColor text-base font-semibold text-white hover:bg-[#e83256] ">
+                     Follow
+                  </Button>
+               )}
+               {data.is_followed && (
+                  <Button className="h-[36px] w-[108px] justify-center rounded  border border-[#1618231f] text-base font-semibold text-textBoldColor hover:border-[#d0d1d3]  hover:bg-[#f8f8f8]">
+                     Đang Follow
+                  </Button>
+               )}
             </div>
             <Link
                className="flex items-center text-lg font-bold text-textBoldColor"

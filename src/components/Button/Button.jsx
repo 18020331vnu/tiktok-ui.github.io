@@ -2,10 +2,11 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 
-function Button({ to, href, onClick, className, children }) {
+function Button({ to, href, onClick, className, children, disable }) {
    const Type = to ? Link : href ? 'a' : 'button'
    return (
       <Type
+         disabled={disable}
          href={href}
          to={to}
          onClick={onClick}

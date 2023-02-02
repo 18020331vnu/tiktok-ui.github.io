@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import Video from '../../components/Video/Video'
 import videoApi from '../../api/videoApi'
 
-function Home1(props) {
+function Home(props) {
    const [videoList, setVideoList] = useState([])
    const [page, setPage] = useState(1)
 
@@ -13,6 +13,7 @@ function Home1(props) {
             type: 'for-you',
             page: page,
          })
+         console.log(response.data)
          setVideoList(response.data)
       }
       getVideoList()
@@ -20,12 +21,12 @@ function Home1(props) {
    return (
       <div>
          {videoList.map((video) => (
-            <Video key={video.id} />
+            <Video key={video.id} data={video} />
          ))}
       </div>
    )
 }
 
-Home1.propTypes = {}
+Home.propTypes = {}
 
-export default Home1
+export default Home

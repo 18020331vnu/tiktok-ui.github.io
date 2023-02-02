@@ -6,6 +6,7 @@ import AccountsListWithPreview from '../AccountPreview/AccountsListWithPreview'
 import Button from '../Button/Button'
 import SeparateBar from './SeparateBar'
 import SidebarNavigate from './SidebarNavigate'
+import AccountsList from '../AccountsList/AccountsList'
 
 function Sidebar() {
    const isLogin = !!localStorage.getItem('token')
@@ -86,12 +87,12 @@ function Sidebar() {
             <div>
                <SeparateBar />
                <div className="py-4">
-                  <AccountsListWithPreview
+                  <AccountsList
                      title="Các tài khoản đang follow"
                      data={followingAccountsList}
                      headerStyle={'px-2 mb-2 font-semibold text-[#161823bf]'}
                      childStyle={'rounded'}
-                  ></AccountsListWithPreview>
+                  ></AccountsList>
                   {followingAccountsList.length === 0 && <AccountLoading />}
 
                   {followingAccountsList.length != followingCount && (

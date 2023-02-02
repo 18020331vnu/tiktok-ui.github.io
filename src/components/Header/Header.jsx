@@ -19,7 +19,7 @@ function Header() {
    let isLogin = !!localStorage.getItem('token')
 
    return (
-      <div className="fixed top-0 z-50 flex h-[var(--header-height)] w-full justify-center shadow-sm backdrop-blur-md">
+      <div className="fixed top-0 z-50 flex h-[var(--header-height)] w-full justify-center bg-[#ffffff99] shadow-sm backdrop-blur-md">
          <div className="flex h-full w-[1150px] items-center justify-between pl-5 pr-6">
             <Button to={'/'} className="">
                <Logo className={'h-[42px] w-[118px]'} />

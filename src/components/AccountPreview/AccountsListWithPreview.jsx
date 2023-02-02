@@ -19,7 +19,12 @@ function AccountsListWithPreview({
          </p>
 
          {data.map((item) => (
-            <AccountPreview data={item} key={item.id}>
+            <AccountPreview
+               data={item}
+               placement={'bottom'}
+               key={item.id}
+               offset={[-20, 0]}
+            >
                <AccountItem
                   to={`/@${item.nickname}`}
                   username={item.nickname}

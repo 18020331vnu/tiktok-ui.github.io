@@ -79,7 +79,10 @@ const HeartIcon = ({ className }) => {
          width="24"
          height="24"
       >
-         <g clip-path="url(#clip1)">
+         <g>
+            <clipPath id="clip1">
+               <rect width="24" height="24" fill="white"></rect>
+            </clipPath>
             <g>
                <path
                   fillRule="evenodd"
@@ -93,7 +96,7 @@ const HeartIcon = ({ className }) => {
                clipRule="evenodd"
                d="M2.40179 12.1998C3.58902 14.6966 5.7592 16.9269 7.74989 18.75C9.5504 20.3989 10.9999 21.5 11.9999 21.5C12.9999 21.5 14.4094 20.4072 16.2499 18.75C19.231 16.0657 22.4999 12.5 22.4999 8.49997C22.4999 8.41258 22.4983 8.32566 22.4952 8.23923C20.5671 13.6619 13.6787 18.5 11.75 18.5C10.3127 18.5 5.61087 15.8131 2.40179 12.1998Z"
                fill="black"
-               fill-opacity="0.03"
+               fillOpacity="0.03"
             ></path>
          </g>
          <defs>
@@ -104,9 +107,9 @@ const HeartIcon = ({ className }) => {
                width="25.8"
                height="24.05"
                filterUnits="userSpaceOnUse"
-               color-interpolation-filters="sRGB"
+               colorInterpolationFilters="sRGB"
             >
-               <feFlood flood-opacity="0" result="BackgroundImageFix"></feFlood>
+               <feFlood floodOpacity="0" result="BackgroundImageFix"></feFlood>
                <feColorMatrix
                   in="SourceAlpha"
                   type="matrix"
@@ -171,7 +174,7 @@ const CommentIcon = ({ className }) => {
                gradientUnits="userSpaceOnUse"
             >
                <stop></stop>
-               <stop offset="1" stop-opacity="0.01"></stop>
+               <stop offset="1" stopOpacity="0.01"></stop>
             </linearGradient>
          </defs>
       </svg>
@@ -217,8 +220,8 @@ const ShareIcon = ({ className }) => {
                gradientTransform="translate(11.1827 18.2553) rotate(-113.046) scale(8.93256 8.78076)"
             >
                <stop></stop>
-               <stop offset="0.995496" stop-opacity="0.01"></stop>
-               <stop offset="1" stop-opacity="0.01"></stop>
+               <stop offset="0.995496" stopOpacity="0.01"></stop>
+               <stop offset="1" stopOpacity="0.01"></stop>
             </radialGradient>
          </defs>
       </svg>

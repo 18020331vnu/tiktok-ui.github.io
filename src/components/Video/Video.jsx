@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { memo, useEffect, useRef, useState } from 'react'
 import PropTypes from 'prop-types'
 import {
    CommentIcon,
@@ -30,6 +30,33 @@ function Video({ data }) {
 
    const { nickname, first_name, last_name, avatar } = userData
 
+   const videoRef = useRef(null)
+
+   useEffect(() => {
+      let isPaused = true
+      let observer = new IntersectionObserver(
+         (entries, observer) => {
+            if (entries[0].intersectionRatio != 1 && !isPaused) {
+               videoRef.current.pause()
+               isPaused = true
+            } else if (isPaused && entries[0].intersectionRatio != 0) {
+               videoRef.current.play()
+               isPaused = false
+            }
+         },
+         { threshold: 1 }
+      )
+      if (videoRef.current) {
+         observer.observe(videoRef.current)
+      }
+
+      return () => {
+         if (videoRef.current) {
+            observer.unobserve(videoRef.current)
+         }
+      }
+   })
+
    const handleFollowUser = async () => {
       const response = await followApi.followUser(user_id)
       setUserData(response.data)
@@ -42,7 +69,7 @@ function Video({ data }) {
 
    try {
       return (
-         <div className="relative mx-4 flex w-[692px] border-b border-b-[#16182333] py-5">
+         <div className="relative mx-4 flex min-h-[50vh] w-[692px] border-b border-b-[#16182333] py-5">
             <AccountPreview
                data={userData}
                placement={'bottom-start'}
@@ -76,7 +103,7 @@ function Video({ data }) {
                </div>
 
                <p
-                  className={`text-base font-normal leading-[22px] ${
+                  className={`max-w-[510px] text-base font-normal leading-[22px] ${
                      music ? '' : 'mb-3'
                   }`}
                >
@@ -85,7 +112,7 @@ function Video({ data }) {
                </p>
 
                {music && (
-                  <div className="mt-1 mb-3 flex cursor-pointer text-base font-semibold leading-[22px] hover:underline">
+                  <div className="mt-1 mb-3 flex max-w-[510px] cursor-pointer text-base font-semibold leading-[22px] hover:underline">
                      <MusicIcon className={'mr-[5px] mt-1'} />
                      {`nhạc nền - ${music}`}
                   </div>
@@ -95,6 +122,7 @@ function Video({ data }) {
                   <div className="relative mr-5">
                      {/* Video */}
                      <video
+                        ref={videoRef}
                         controls
                         preload="metadata"
                         className=" block max-h-[503px] max-w-[503px] rounded-lg"
@@ -171,4 +199,4 @@ function Video({ data }) {
 
 Video.propTypes = {}
 
-export default Video
+export default memo(Video)

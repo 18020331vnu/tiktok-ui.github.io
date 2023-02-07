@@ -8,7 +8,7 @@ function SidebarNavigateItem({ to, title, icon, activeIcon }) {
          className={({ isActive }) =>
             `${
                isActive ? 'text-primaryColor' : 'text-textBoldColor'
-            } flex h-12 w-[340px] items-center rounded p-2  hover:bg-hoverMainColor`
+            } flex h-12 w-[348px] items-center rounded p-2  hover:bg-hoverMainColor`
          }
          to={to}
       >

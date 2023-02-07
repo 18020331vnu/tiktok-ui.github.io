@@ -8,6 +8,8 @@ import SeparateBar from './SeparateBar'
 import SidebarNavigate from './SidebarNavigate'
 import AccountsList from '../AccountsList/AccountsList'
 
+import SimpleBarReact from 'simplebar-react'
+
 function Sidebar() {
    const isLogin = !!localStorage.getItem('token')
 
@@ -36,7 +38,7 @@ function Sidebar() {
          })
          setFollowingCount(response.meta.pagination.total)
          setFollowingAccountList((prev) => {
-            if (followingPage === 1) return response.data
+            if (followingPage === 1) return [...response.data]
             return [...prev, ...response.data]
          })
       }
@@ -45,72 +47,37 @@ function Sidebar() {
    }, [followingPage])
 
    return (
-      <div className="scrollbar-h-[40px] scrollbar-thump-hover-red-400 fixed top-[60px] left-[calc((100vw-1150px)/2)] max-h-[calc(100vh-60px)] w-[356px] overscroll-y-contain pt-5 pl-2 scrollbar-thin hover:scrollbar-thumb-slate-300">
-         <SidebarNavigate />
-         {/* <AccountPreview /> */}
+      <div className="fixed top-[60px] bottom-0 overflow-hidden overscroll-y-contain pt-3 pl-2 sm:left-0 sm:w-[72px] lg:w-[356px] xl:left-[calc((100vw-1150px)/2)]">
+         <SimpleBarReact className="h-[calc(100vh-60px)] w-[348px]">
+            <SidebarNavigate />
+            {/* <AccountPreview /> */}
 
-         <div>
-            <SeparateBar />
-            <div className="py-4">
-               <AccountsListWithPreview
-                  title="Tài khoản được đề xuất"
-                  data={suggestAccountsList}
-                  headerStyle={'px-2 mb-2 font-semibold text-[#161823bf]'}
-                  childStyle={'rounded'}
-               />
-
-               {suggestAccountsList.length === 0 && <AccountLoading />}
-               {suggestAccountsList.length < 20 && (
-                  <Button
-                     onClick={() => setsuggestedPerPage(20)}
-                     className={
-                        'mt-2 w-full px-2 text-sm font-semibold text-primaryColor'
-                     }
-                  >
-                     Xem tất cả
-                  </Button>
-               )}
-               {suggestAccountsList.length > 5 && (
-                  <Button
-                     onClick={() => setsuggestedPerPage(5)}
-                     className={
-                        'mt-2 w-full px-2 text-sm font-semibold text-primaryColor'
-                     }
-                  >
-                     Ẩn bớt
-                  </Button>
-               )}
-            </div>
-         </div>
-
-         {isLogin && (
             <div>
                <SeparateBar />
                <div className="py-4">
-                  <AccountsList
-                     title="Các tài khoản đang follow"
-                     data={followingAccountsList}
+                  <AccountsListWithPreview
+                     title="Tài khoản được đề xuất"
+                     data={suggestAccountsList}
                      headerStyle={'px-2 mb-2 font-semibold text-[#161823bf]'}
                      childStyle={'rounded'}
-                  ></AccountsList>
-                  {followingAccountsList.length === 0 && <AccountLoading />}
+                  />
 
-                  {followingAccountsList.length != followingCount && (
+                  {suggestAccountsList.length === 0 && <AccountLoading />}
+                  {suggestAccountsList.length < 20 && (
                      <Button
+                        onClick={() => setsuggestedPerPage(20)}
                         className={
-                           'mt-2 px-2 text-sm font-semibold text-primaryColor'
+                           'mt-2 w-full px-2 text-sm font-semibold text-primaryColor'
                         }
-                        onClick={() => setFollowingPage(followingPage + 1)}
                      >
-                        Xem thêm
+                        Xem tất cả
                      </Button>
                   )}
-
-                  {followingAccountsList.length > 5 && (
+                  {suggestAccountsList.length > 5 && (
                      <Button
-                        onClick={() => setFollowingPage(1)}
+                        onClick={() => setsuggestedPerPage(5)}
                         className={
-                           'mt-2 px-2 text-sm font-semibold text-primaryColor'
+                           'mt-2 w-full px-2 text-sm font-semibold text-primaryColor'
                         }
                      >
                         Ẩn bớt
@@ -118,7 +85,44 @@ function Sidebar() {
                   )}
                </div>
             </div>
-         )}
+
+            {isLogin && (
+               <div>
+                  <SeparateBar />
+                  <div className="py-4">
+                     <AccountsList
+                        title="Các tài khoản đang follow"
+                        data={followingAccountsList}
+                        headerStyle={'px-2 mb-2 font-semibold text-[#161823bf]'}
+                        childStyle={'rounded'}
+                     ></AccountsList>
+                     {followingAccountsList.length === 0 && <AccountLoading />}
+
+                     {followingAccountsList.length != followingCount && (
+                        <Button
+                           className={
+                              'mt-2 px-2 text-sm font-semibold text-primaryColor'
+                           }
+                           onClick={() => setFollowingPage(followingPage + 1)}
+                        >
+                           Xem thêm
+                        </Button>
+                     )}
+
+                     {followingAccountsList.length > 5 && (
+                        <Button
+                           onClick={() => setFollowingPage(1)}
+                           className={
+                              'mt-2 px-2 text-sm font-semibold text-primaryColor'
+                           }
+                        >
+                           Ẩn bớt
+                        </Button>
+                     )}
+                  </div>
+               </div>
+            )}
+         </SimpleBarReact>
       </div>
    )
 }

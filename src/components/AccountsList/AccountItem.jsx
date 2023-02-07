@@ -24,7 +24,7 @@ function AccountItem({
             src={
                avatar !== 'https://files.fullstack.edu.vn/f8-tiktok/'
                   ? avatar
-                  : `https://p16-sign-sg.tiktokcdn.com/aweme/100x100/tiktok-obj/1610321846996993.jpeg?x-expires=1675094400&x-signature=1X8lkhlnx5llsxYkl9H3Da9AowA%3D`
+                  : `https://p16-sign-sg.tiktokcdn.com/aweme/100x100/tiktok-obj/1610321846996993.jpeg?x-expires=1675954800&x-signature=1X%2B0F6UvjFF84zyUaqkk2yo7YR8%3D`
             }
             alt=""
             className="mr-3 h-10 w-10 rounded-full"

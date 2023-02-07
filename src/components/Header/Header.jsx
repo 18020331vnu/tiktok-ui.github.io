@@ -20,7 +20,7 @@ function Header() {
 
    return (
       <div className="fixed top-0 z-50 flex h-[var(--header-height)] w-full justify-center bg-[#ffffff99] shadow-sm backdrop-blur-md">
-         <div className="flex h-full w-[1150px] items-center justify-between pl-5 pr-6">
+         <div className="flex h-full items-center justify-between pl-5 pr-6 lg:w-full xl:w-[1150px]">
             <Button to={'/'} className="">
                <Logo className={'h-[42px] w-[118px]'} />
             </Button>
@@ -61,7 +61,7 @@ function Header() {
                   >
                      <div className="ml-6 cursor-pointer">
                         <img
-                           src="https://p16-sign-sg.tiktokcdn.com/aweme/100x100/tiktok-obj/1610321846996993.jpeg?x-expires=1675094400&x-signature=1X8lkhlnx5llsxYkl9H3Da9AowA%3D"
+                           src="https://p16-sign-sg.tiktokcdn.com/aweme/100x100/tiktok-obj/1610321846996993.jpeg?x-expires=1675954800&x-signature=1X%2B0F6UvjFF84zyUaqkk2yo7YR8%3D"
                            alt="avatar"
                            className=" h-8 w-8  rounded-full"
                         />

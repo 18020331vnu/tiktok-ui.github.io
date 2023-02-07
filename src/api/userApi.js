@@ -5,8 +5,8 @@ const userApi = {
       const url = '/users/suggested'
       return axiosClient.get(url, { params })
    },
-   get: (id) => {
-      const url = `/users/@${id}`
+   get: (username) => {
+      const url = `/users${username}`
       return axiosClient.get(url)
    },
 }

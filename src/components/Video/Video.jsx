@@ -4,7 +4,7 @@ import {
    CommentIcon,
    HeartIcon,
    MusicIcon,
-   PlayIcon,
+   PlayIconFill,
    ShareIcon,
    SoundIcon,
 } from '../Icons/VideoIcons/VideoIcons'
@@ -44,7 +44,7 @@ function Video({ data }) {
                isPaused = false
             }
          },
-         { threshold: 1 }
+         { threshold: 1, rootMargin: '-100px' }
       )
       if (videoRef.current) {
          observer.observe(videoRef.current)
@@ -69,7 +69,7 @@ function Video({ data }) {
 
    try {
       return (
-         <div className="relative mx-4 flex min-h-[50vh] w-[692px] border-b border-b-[#16182333] py-5">
+         <div className="relative mx-4 flex w-[692px] border-b border-b-[#16182333] py-5">
             <AccountPreview
                data={userData}
                placement={'bottom-start'}
@@ -121,15 +121,19 @@ function Video({ data }) {
                <div className="flex items-end">
                   <div className="relative mr-5">
                      {/* Video */}
-                     <video
-                        ref={videoRef}
-                        controls
-                        preload="metadata"
-                        className=" block max-h-[503px] max-w-[503px] rounded-lg"
-                        src={file_url}
-                     />
-                     <PlayIcon className={'absolute top-0 left-0'} />
-                     <SoundIcon className={'absolute top-0 right-0'} />
+                     <Link
+                        to={`/@${userData.nickname}/video/${videoData.uuid}`}
+                     >
+                        <video
+                           ref={videoRef}
+                           controls
+                           preload="metadata"
+                           className=" block max-h-[503px] max-w-[503px] rounded-lg"
+                           src={file_url}
+                        />
+                        <PlayIconFill className={'absolute top-0 left-0'} />
+                        <SoundIcon className={'absolute top-0 right-0'} />
+                     </Link>
                   </div>
                   <div>
                      {/* Actions  */}
@@ -173,7 +177,7 @@ function Video({ data }) {
                <Button
                   onClick={handleFollowUser}
                   className={
-                     'border-primaryColor absolute right-0 top-7 h-7 w-[88px] justify-center rounded border text-base font-semibold text-primaryColor hover:bg-primaryColor hover:text-white'
+                     'absolute right-0 top-7 h-7 w-[88px] justify-center rounded border border-primaryColor text-base font-semibold text-primaryColor hover:bg-[#fe2c550f]'
                   }
                >
                   Follow
@@ -184,10 +188,10 @@ function Video({ data }) {
                <Button
                   onClick={handleUnfollowUser}
                   className={
-                     'border-primaryColor absolute right-0 top-7 h-7 w-[88px] justify-center rounded border text-base font-semibold text-primaryColor hover:bg-primaryColor hover:text-white'
+                     'absolute right-0 top-7 h-8 justify-center rounded border border-[#1618231f] px-[10px] text-base font-semibold text-textBoldColor hover:border-[#d0d1d3] hover:bg-[#f8f8f8]'
                   }
                >
-                  Dang Follow
+                  Đang Follow
                </Button>
             )}
          </div>

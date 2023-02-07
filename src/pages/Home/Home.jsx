@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import PropTypes from 'prop-types'
 import Video from '../../components/Video/Video'
 import videoApi from '../../api/videoApi'
+import VideoLoading from '../../components/Video/VideoLoading'
 
 function Home(props) {
    const [videoList, setVideoList] = useState([])
@@ -21,10 +22,12 @@ function Home(props) {
    }, [page])
 
    useEffect(() => {
-      let observer = new IntersectionObserver((entire, observer) => {
-         console.log(entire[0].isIntersecting)
-         if (entire[0].isIntersecting) {
-            setPage((prev) => prev + 1)
+      let isLoading = false
+      let observer = new IntersectionObserver((entires) => {
+         if (entires[0].isIntersecting) {
+            console.log(entires[0])
+            videoRef.current = null
+            setPage(page + 1)
          }
       })
 
@@ -54,6 +57,7 @@ function Home(props) {
                </div>
             )
          })}
+         <VideoLoading />
       </div>
    )
 }

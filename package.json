@@ -10,13 +10,15 @@
       "preview": "npm run build && vite preview"
    },
    "dependencies": {
-      "@headlessui/react": "^1.7.8",
+      "@headlessui/react": "^1.7.10",
+      "@reduxjs/toolkit": "^1.9.2",
       "@tippyjs/react": "^4.2.6",
       "axios": "^1.2.3",
       "prop-types": "^15.8.1",
       "query-string": "^8.1.0",
       "react": "^18.2.0",
       "react-dom": "^18.2.0",
+      "react-redux": "^8.0.5",
       "react-router-dom": "6.4",
       "simplebar-react": "^3.2.0"
    },

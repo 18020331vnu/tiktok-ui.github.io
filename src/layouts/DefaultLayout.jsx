@@ -6,9 +6,9 @@ function DefaultLayout({ children }) {
    return (
       <div className="flex flex-col items-center justify-center">
          <Header />
-         <div className="mt-[var(--header-height)] flex w-[1150px]  justify-end">
+         <div className="mt-[var(--header-height)] flex justify-end lg:w-full  xl:w-[1150px]">
             <Sidebar />
-            <div className="">{children}</div>
+            <div className="mx-4 lg:w-[692px]">{children}</div>
          </div>
       </div>
    )

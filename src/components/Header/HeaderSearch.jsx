@@ -89,7 +89,7 @@ function HeaderSearch() {
                </Popover>
             )}
          >
-            <div className="relative flex w-[361px] flex-shrink-0 items-center overflow-hidden rounded-md bg-[#1618230f]">
+            <div className="relative  hidden w-[361px] flex-shrink-0 items-center overflow-hidden rounded-md bg-[#1618230f] lg:flex">
                {/* Input search */}
                <input
                   ref={inputRef}

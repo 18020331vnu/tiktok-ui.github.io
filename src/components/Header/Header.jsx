@@ -19,7 +19,7 @@ function Header() {
    let isLogin = !!localStorage.getItem('token')
 
    return (
-      <div className="fixed top-0 z-50 flex h-[var(--header-height)] w-full justify-center bg-[#ffffff99] shadow-sm backdrop-blur-md">
+      <div className="fixed top-0 z-10 flex h-[var(--header-height)] w-full justify-center bg-[#ffffff99] shadow-sm backdrop-blur-md">
          <div className="flex h-full items-center justify-between pl-5 pr-6 lg:w-full xl:w-[1150px]">
             <Button to={'/'} className="">
                <Logo className={'h-[42px] w-[118px]'} />
@@ -61,7 +61,7 @@ function Header() {
                   >
                      <div className="ml-6 cursor-pointer">
                         <img
-                           src="https://p16-sign-sg.tiktokcdn.com/aweme/100x100/tiktok-obj/1610321846996993.jpeg?x-expires=1675954800&x-signature=1X%2B0F6UvjFF84zyUaqkk2yo7YR8%3D"
+                           src="src/assets/img/avatar_tmp.jpeg"
                            alt="avatar"
                            className=" h-8 w-8  rounded-full"
                         />

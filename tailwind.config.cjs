@@ -14,6 +14,10 @@ module.exports = {
             primaryColor: '#fe2c55',
             textBoldColor: '#161823',
          },
+
+         borderColor: {
+            primaryColor: '#fe2c55',
+         },
       },
    },
    plugins: [require('tailwind-scrollbar')],

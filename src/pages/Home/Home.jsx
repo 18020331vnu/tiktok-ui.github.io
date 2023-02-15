@@ -1,8 +1,9 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { memo, useEffect, useRef, useState } from 'react'
 import PropTypes from 'prop-types'
 import Video from '../../components/Video/Video'
 import videoApi from '../../api/videoApi'
 import VideoLoading from '../../components/Video/VideoLoading'
+import { Outlet } from 'react-router-dom'
 
 function Home(props) {
    const [videoList, setVideoList] = useState([])
@@ -22,7 +23,6 @@ function Home(props) {
    }, [page])
 
    useEffect(() => {
-      let isLoading = false
       let observer = new IntersectionObserver((entires) => {
          if (entires[0].isIntersecting) {
             console.log(entires[0])
@@ -43,25 +43,28 @@ function Home(props) {
    })
 
    return (
-      <div>
-         {videoList.map((video, index) => {
-            if (index === videoList.length - 1)
+      <>
+         <div>
+            {videoList.map((video, index) => {
+               if (index === videoList.length - 1)
+                  return (
+                     <div ref={videoRef} key={video.id}>
+                        <Video data={video} />
+                     </div>
+                  )
                return (
-                  <div ref={videoRef} key={video.id}>
+                  <div key={video.id}>
                      <Video data={video} />
                   </div>
                )
-            return (
-               <div key={video.id}>
-                  <Video data={video} />
-               </div>
-            )
-         })}
-         <VideoLoading />
-      </div>
+            })}
+            <VideoLoading />
+         </div>
+         <Outlet />
+      </>
    )
 }
 
 Home.propTypes = {}
 
-export default Home
+export default memo(Home)

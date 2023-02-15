@@ -24,18 +24,20 @@ function AccountItem({
             src={
                avatar !== 'https://files.fullstack.edu.vn/f8-tiktok/'
                   ? avatar
-                  : `https://p16-sign-sg.tiktokcdn.com/aweme/100x100/tiktok-obj/1610321846996993.jpeg?x-expires=1675954800&x-signature=1X%2B0F6UvjFF84zyUaqkk2yo7YR8%3D`
+                  : 'src/assets/img/avatar_tmp.jpeg'
             }
             alt=""
             className="mr-3 h-10 w-10 rounded-full"
          />
          <div className="flex flex-col items-start">
             <h4 className="flex text-base font-semibold">
-               {username || 'Thu Sang'}
+               {username}
                {tick && <VerifyBagdeIcon className={'ml-2 mb-[2px]'} />}
             </h4>
             <p className="text-sm font-normal text-[#16182380]">
-               {`${firstName} ${lastName}`}
+               {`${firstName} ${lastName}` === ' '
+                  ? username
+                  : `${firstName} ${lastName}`}
             </p>
          </div>
       </Type>

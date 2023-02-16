@@ -11,7 +11,7 @@ import {
    UploadIcon,
 } from '../Icons/HeaderIcons/HeaderIcons'
 
-import PopoverMenu from '../Popover/PopoverMenu'
+import PopoverMenu from '../../feature/Popover/PopoverMenu'
 import HeaderSearch from './HeaderSearch'
 
 function Header() {

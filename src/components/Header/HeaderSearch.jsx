@@ -2,14 +2,16 @@ import HeadlessTippy from '@tippyjs/react/headless'
 import React, { useCallback, useEffect, useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import searchApi from '../../api/searchApi'
+import AccountsList from '../../feature/Account/AccountsList'
+import Popover from '../../feature/Popover/Popover'
 import useDebounce from '../../hooks/useDebounce'
-import AccountsList from '../AccountsList/AccountsList'
+// import AccountsList from '../AccountsList/AccountsList'
 import {
    CloseIcon,
    LoadingIcon,
    SearchIcon,
 } from '../Icons/HeaderIcons/HeaderIcons'
-import Popover from '../Popover/Popover'
+// import Popover from '../Popover/Popover'
 
 function HeaderSearch() {
    console.log('re-render HeaderSearch')

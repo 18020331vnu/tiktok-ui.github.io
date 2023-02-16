@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types'
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { VerifyBagdeIcon } from '../Icons/HeaderIcons/HeaderIcons'
+import { VerifyBagdeIcon } from '../../components/Icons/HeaderIcons/HeaderIcons'
 
 function AccountItem({
    username,

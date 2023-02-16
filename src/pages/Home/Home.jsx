@@ -1,8 +1,8 @@
 import React, { memo, useEffect, useRef, useState } from 'react'
 import PropTypes from 'prop-types'
-import Video from '../../components/Video/Video'
+import Video from '../../feature/Video/Video'
 import videoApi from '../../api/videoApi'
-import VideoLoading from '../../components/Video/VideoLoading'
+import VideoLoading from '../../feature/Video/VideoLoading'
 import { Outlet } from 'react-router-dom'
 
 function Home(props) {

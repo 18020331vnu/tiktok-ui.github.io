@@ -4,7 +4,7 @@ import userApi from '../../api/userApi'
 import Button from '../../components/Button/Button'
 import { VerifyBagdeIcon } from '../../components/Icons/HeaderIcons/HeaderIcons'
 import { NotFoundIcon } from '../../components/Icons/VideoIcons/VideoIcons'
-import VideoPreview from '../../components/Video/VideoPreview'
+import VideoPreview from '../../feature/Video/VideoPreview'
 
 function Profile() {
    const params = useParams()

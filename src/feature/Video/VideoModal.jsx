@@ -1,40 +1,22 @@
-import React, {
-   memo,
-   useEffect,
-   useLayoutEffect,
-   useRef,
-   useState,
-} from 'react'
-import PropTypes from 'prop-types'
-// import Button from '../Button/Button'
+import React, { memo, useEffect, useRef, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
-// import videoApi from '../../api/videoApi'
 import { Dialog } from '@headlessui/react'
-// import {
-//    CommentIcon,
-//    HeartIcon,
-//    MusicIcon,
-// } from '../Icons/VideoIcons/VideoIcons'
-// import { VerifyBagdeIcon } from '../Icons/HeaderIcons/HeaderIcons'
 import commentApi from '../../api/commentApi'
-// import Comment from './Comment'
-// import { CloseIcon } from '../Icons/VideoModalIcon/VideoModalIcon'
-// import AccountPreview from '../AccountPreview/AccountPreview'
 
-import Comment from './Comment'
+import { useDispatch, useSelector } from 'react-redux'
+import followApi from '../../api/followApi'
 import videoApi from '../../api/videoApi'
 import Button from '../../components/Button/Button'
+import { VerifyBagdeIcon } from '../../components/Icons/HeaderIcons/HeaderIcons'
 import {
    CommentIcon,
    HeartIcon,
    MusicIcon,
 } from '../../components/Icons/VideoIcons/VideoIcons'
-import { VerifyBagdeIcon } from '../../components/Icons/HeaderIcons/HeaderIcons'
 import { CloseIcon } from '../../components/Icons/VideoModalIcon/VideoModalIcon'
-import AccountPreview from '../Account/AccountPreview'
-import { useDispatch, useSelector } from 'react-redux'
-import followApi from '../../api/followApi'
 import { follow, unfollow } from '../../redux/followingSlice'
+import AccountPreview from '../Account/AccountPreview'
+import Comment from './Comment'
 
 function VideoModal() {
    const commentInputRef = useRef()

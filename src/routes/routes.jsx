@@ -1,4 +1,4 @@
-import VideoModal from '../components/Video/VideoModal'
+import VideoModal from '../feature/Video/VideoModal'
 import Following from '../pages/Following/Following'
 import Home from '../pages/Home/Home'
 import Live from '../pages/Live/Live'

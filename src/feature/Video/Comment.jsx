@@ -1,10 +1,21 @@
-import React, { useState } from 'react'
+import React, { memo, useState } from 'react'
 import PropTypes from 'prop-types'
-import { LikeIcon, LikeIconFill } from '../Icons/VideoModalIcon/VideoModalIcon'
-import Button from '../Button/Button'
+// import {
+//    LikeIcon,
+//    LikeIconFill,
+// } from '../../Icons/VideoModalIcon/VideoModalIcon'
+// import Button from '../../Button/Button'
+// import likeApi from '../../../api/likeApi'
+// import AccountPreview from '../../AccountPreview/AccountPreview'
+import {
+   LikeIcon,
+   LikeIconFill,
+} from '../../components/Icons/VideoModalIcon/VideoModalIcon'
+import Button from '../../components/Button/Button'
 import likeApi from '../../api/likeApi'
+import AccountPreview from '../Account/AccountPreview'
 
-function Comment({ user, data }) {
+function Comment({ user, data, onClick }) {
    const {
       comment: content,
       id: commentId,
@@ -58,19 +69,39 @@ function Comment({ user, data }) {
    try {
       return (
          <div className="mb-4 flex">
-            <img src={avatar} alt="" className="mr-3 h-10 w-10 rounded-full" />
+            <AccountPreview data={user}>
+               <img
+                  src={
+                     user.avatar === 'https://files.fullstack.edu.vn/f8-tiktok/'
+                        ? '/src/assets/img/avatar_tmp.jpeg'
+                        : user.avatar
+                  }
+                  alt=""
+                  className="mr-3 h-10 w-10 rounded-full"
+               />
+            </AccountPreview>
 
             <div className="flex-grow">
-               <p className="flex items-baseline text-lg font-bold leading-[25px]">
-                  {`${first_name} ${last_name}` === ' '
-                     ? nickname
-                     : `${first_name} ${last_name}`}
-                  {tick && <VerifyBagdeIcon className={'ml-1'} />}
-               </p>
+               <AccountPreview data={user}>
+                  <p className="flex items-baseline text-lg font-bold leading-[25px]">
+                     {`${first_name} ${last_name}` === ' '
+                        ? nickname
+                        : `${first_name} ${last_name}`}
+                     {tick && <VerifyBagdeIcon className={'ml-1'} />}
+                  </p>
+               </AccountPreview>
+
                <p className="mb-[6px] leading-[22px]">{content}</p>
                <p className="text-sm text-[#16182380]">
                   {formatDate(new Date(lastUpdated))}
-                  <span className="ml-6">Trả lời</span>
+                  <span
+                     onClick={() => {
+                        onClick(user.nickname)
+                     }}
+                     className="ml-6"
+                  >
+                     Trả lời
+                  </span>
                </p>
             </div>
 
@@ -96,4 +127,4 @@ function Comment({ user, data }) {
 
 Comment.propTypes = {}
 
-export default Comment
+export default memo(Comment)

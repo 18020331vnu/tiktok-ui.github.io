@@ -6,11 +6,18 @@ import NotFound from './pages/Error/Error'
 import Upload from './pages/Upload/Upload'
 import { defaultLayoutRoutes, headerOnlyRoutes } from './routes/routes'
 import Header from './components/Header/Header'
-import VideoModal from './components/Video/VideoModal'
 import Profile from './pages/Profile/Profile'
 import Home from './pages/Home/Home'
+import { useEffect } from 'react'
+import { useDispatch } from 'react-redux'
+import { getAllFollowing } from './redux/followingSlice'
 
 function App() {
+   const dispatch = useDispatch()
+   useEffect(() => {
+      dispatch(getAllFollowing())
+   }, [])
+
    return (
       <div className="App">
          {/* <DefaultLayout> */}

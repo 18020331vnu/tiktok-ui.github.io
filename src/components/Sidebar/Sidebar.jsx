@@ -1,17 +1,26 @@
 import React, { memo, useEffect, useState } from 'react'
 import followApi from '../../api/followApi'
 import userApi from '../../api/userApi'
-import AccountLoading from '../AccountsList/AccountLoading'
-import AccountsListWithPreview from '../AccountPreview/AccountsListWithPreview'
+// import AccountLoading from '../AccountsList/AccountLoading'
+// import AccountsListWithPreview from '../AccountPreview/AccountsListWithPreview'
 import Button from '../Button/Button'
 import SeparateBar from './SeparateBar'
 import SidebarNavigate from './SidebarNavigate'
-import AccountsList from '../AccountsList/AccountsList'
+// import AccountsList from '../AccountsList/AccountsList'
 
 import SimpleBarReact from 'simplebar-react'
+import { useDispatch, useSelector } from 'react-redux'
+import { follow } from '../../redux/followingSlice'
+import AccountsListWithPreview from '../../feature/Account/AccountsListWithPreview'
+import AccountLoading from '../../feature/Account/AccountLoading'
+import AccountsList from '../../feature/Account/AccountsList'
 
 function Sidebar() {
    const isLogin = !!localStorage.getItem('token')
+
+   const dispatch = useDispatch()
+   const followingList = useSelector((state) => state.following)
+   console.log(followingList)
 
    console.log('re-render Sidebar')
    const [suggestAccountsList, setSuggestAccountsList] = useState([])

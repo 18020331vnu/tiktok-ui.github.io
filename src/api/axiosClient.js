@@ -1,7 +1,7 @@
 import axios from 'axios'
 const axiosClient = axios.create({
    baseURL: import.meta.env.VITE_API_URL,
-   timeout: 3000,
+   timeout: 10000,
    headers: {
       'Content-Type': 'application/json',
    },
@@ -9,9 +9,9 @@ const axiosClient = axios.create({
 })
 
 axiosClient.interceptors.request.use(async (config) => {
-   const token = localStorage.getItem('token')
-   if (token) {
-      config.headers.Authorization = `Bearer ${token}`
+   const currentUser = JSON.parse(localStorage.getItem('currentUser'))
+   if (currentUser) {
+      config.headers.Authorization = `Bearer ${currentUser?.meta?.token}`
    }
    return config
 })

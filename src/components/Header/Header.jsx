@@ -9,14 +9,16 @@ import {
    MessageIcon,
    MoreIcon,
    UploadIcon,
-} from '../Icons/HeaderIcons/HeaderIcons'
+} from '../Icons/HeaderIcons'
 
 import PopoverMenu from '../../feature/Popover/PopoverMenu'
 import HeaderSearch from './HeaderSearch'
+import { useSelector } from 'react-redux'
 
 function Header() {
    console.log('re-render Header')
-   let isLogin = !!localStorage.getItem('token')
+   const currentUser = useSelector((state) => state.auth.currentUser)
+   console.log('currentUser', currentUser)
 
    return (
       <div className="fixed top-0 z-10 flex h-[var(--header-height)] w-full justify-center bg-[#ffffff99] shadow-sm backdrop-blur-md">
@@ -27,7 +29,7 @@ function Header() {
 
             <HeaderSearch />
 
-            {isLogin && (
+            {!!currentUser ? (
                <div className="flex items-center">
                   {/* Upload button */}
                   <Button
@@ -61,15 +63,14 @@ function Header() {
                   >
                      <div className="ml-6 cursor-pointer">
                         <img
-                           src="src/assets/img/avatar_tmp.jpeg"
+                           src="/src/assets/img/avatar_tmp.jpeg"
                            alt="avatar"
                            className=" h-8 w-8  rounded-full"
                         />
                      </div>
                   </PopoverMenu>
                </div>
-            )}
-            {!isLogin && (
+            ) : (
                <div className="item-center flex">
                   <Button
                      to="/upload"

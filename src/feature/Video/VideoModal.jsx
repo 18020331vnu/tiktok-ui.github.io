@@ -7,51 +7,82 @@ import { useDispatch, useSelector } from 'react-redux'
 import followApi from '../../api/followApi'
 import videoApi from '../../api/videoApi'
 import Button from '../../components/Button/Button'
-import { VerifyBagdeIcon } from '../../components/Icons/HeaderIcons/HeaderIcons'
+import { VerifyBagdeIcon } from '../../components/Icons/HeaderIcons'
 import {
    CommentIcon,
    HeartIcon,
    MusicIcon,
-} from '../../components/Icons/VideoIcons/VideoIcons'
-import { CloseIcon } from '../../components/Icons/VideoModalIcon/VideoModalIcon'
+} from '../../components/Icons/VideoIcons'
+import {
+   CloseIcon,
+   LikeIcon,
+   LikeIconFill,
+} from '../../components/Icons/VideoModalIcon'
 import { follow, unfollow } from '../../redux/followingSlice'
 import AccountPreview from '../Account/AccountPreview'
 import Comment from './Comment'
+import { useInView } from 'react-intersection-observer'
+import CommentLoading from './CommentLoading'
+import likeApi from '../../api/likeApi'
 
 function VideoModal() {
-   const commentInputRef = useRef()
-   const dispatch = useDispatch()
-   const [comment, setComment] = useState('')
    const followingList = useSelector((state) => state.following)
-   console.log('video modal', followingList)
+   const dispatch = useDispatch()
+
+   const [comment, setComment] = useState('')
+   const [lastUpdated, setLastUpdated] = useState()
+   const [commentList, setCommentList] = useState([])
+   const [user, setUser] = useState()
+   const [video, setVideo] = useState()
+   const [commentPage, setcommentPage] = useState(1)
+   const [totalPage, setTotalPage] = useState()
+   const [commentLoading, setcommentLoading] = useState(false)
+
+   const commentInputRef = useRef()
+
    const params = useParams()
    const navigate = useNavigate()
+
+   const { ref, inView } = useInView({})
    const handleReturnPrevPage = () => {
       navigate(-1)
    }
-   const [user, setUser] = useState()
-   const [video, setVideo] = useState()
-   const [commentList, setCommentList] = useState([])
-   const [lastUpdated, setLastUpdated] = useState()
 
    useEffect(() => {
       const getaVideo = async () => {
          const response = await videoApi.getVideo(params.uuid)
+         console.log(response.data)
          setVideo(response.data)
          setUser(response.data.user)
          setLastUpdated(new Date(response.data.updated_at))
       }
 
-      const getComments = async () => {
-         const response = await commentApi.getComments(params.uuid, {
-            page: 1,
-         })
-         console.log(response.data)
-         setCommentList(response.data)
-      }
-
-      Promise.all([getaVideo(), getComments()])
+      getaVideo()
    }, [params.uuid])
+
+   useEffect(() => {
+      const getComments = async () => {
+         console.log(commentPage, totalPage)
+         if (commentPage < totalPage) {
+            setcommentLoading(true)
+         }
+         const response = await commentApi.getComments(params.uuid, {
+            page: commentPage,
+         })
+         setTotalPage(response.meta.pagination.total_pages)
+         setcommentLoading(false)
+         setCommentList([...commentList, ...response.data])
+      }
+      getComments()
+   }, [commentPage])
+
+   // Handle load more comments
+   useEffect(() => {
+      if (inView) {
+         if (commentPage === totalPage) return
+         setcommentPage((prev) => prev + 1)
+      }
+   }, [inView])
 
    const formatDate = (lastUpdated) => {
       const currentDate = new Date()
@@ -80,14 +111,37 @@ function VideoModal() {
       }
    }
 
+   const handleLikeVideo = async () => {
+      try {
+         const response = await likeApi.likePost(params.uuid)
+         setVideo(response.data)
+      } catch (error) {
+         console.log(error)
+      }
+   }
+
+   const handleDislikeVideo = async () => {
+      try {
+         const response = await likeApi.unlikePost(params.uuid)
+         setVideo(response.data)
+      } catch (error) {
+         console.log(error)
+      }
+   }
+
    const handlePostComment = async () => {
       const content = commentInputRef.current.value
       if (content) {
-         const response = await commentApi.postComment(params.uuid, {
-            comment: content,
-         })
-         setCommentList((prev) => [response.data, ...prev])
-         setComment('')
+         try {
+            const response = await commentApi.postComment(params.uuid, {
+               comment: content,
+            })
+            setCommentList((prev) => [response.data, ...prev])
+            setVideo(response.data)
+            setComment('')
+         } catch (error) {
+            console.log(error)
+         }
       }
    }
 
@@ -121,16 +175,16 @@ function VideoModal() {
    }
 
    return (
-      <>
+      <Dialog
+         open={true}
+         onClose={() => {
+            // setIsOpen(false)
+            navigate(-1)
+         }}
+         className="fixed inset-0 z-20 flex bg-white"
+      >
          {video && (
-            <Dialog
-               open={true}
-               onClose={() => {
-                  // setIsOpen(false)
-                  navigate(-1)
-               }}
-               className="fixed inset-0 z-20 flex bg-white"
-            >
+            <>
                <div className="relative flex-grow overflow-hidden">
                   <div className="h-full w-full  blur-lg">
                      <div
@@ -152,13 +206,13 @@ function VideoModal() {
                   </Button>
 
                   <video
+                     loop={true}
                      preload=""
                      className="absolute inset-0 h-full w-full object-contain"
                      autoPlay={true}
                      src={video.file_url}
                   ></video>
                </div>
-
                <div className="flex w-[544px] flex-col pt-8">
                   <div className="mb-[15px] flex h-[82px] items-center px-8 pt-[22px]">
                      <div className="group flex-grow cursor-pointer">
@@ -237,13 +291,24 @@ function VideoModal() {
                      <div className="py-4">
                         <div className="flex justify-between">
                            <div className="flex items-center text-xs font-bold leading-[17px]">
-                              <Button>
-                                 <HeartIcon
-                                    className={
-                                       'mr-[6px] h-8 w-8 rounded-full bg-[#1618230f] p-[6px]'
-                                    }
-                                 />
-                              </Button>
+                              {!video.is_liked && (
+                                 <Button onClick={handleLikeVideo}>
+                                    <LikeIcon
+                                       className={
+                                          'mr-[6px] h-8 w-8 rounded-full bg-[#1618230f] p-[6px]'
+                                       }
+                                    />
+                                 </Button>
+                              )}
+                              {video.is_liked && (
+                                 <Button onClick={handleDislikeVideo}>
+                                    <LikeIconFill
+                                       className={
+                                          'mr-[6px] h-8 w-8 rounded-full bg-[#1618230f] p-[6px]'
+                                       }
+                                    />
+                                 </Button>
+                              )}
                               <span className="mr-5">{video.likes_count}</span>
 
                               <CommentIcon
@@ -271,15 +336,32 @@ function VideoModal() {
                   </div>
 
                   <div className="flex-grow overflow-y-scroll border-y border-y-[#16182333] bg-[#f8f8f8] px-8 pt-6">
-                     {/* Comments list */}
-                     {commentList.map((comment) => (
-                        <Comment
-                           onClick={(nickname) => handleClickReply(nickname)}
-                           key={comment.id}
-                           user={comment.user}
-                           data={comment}
-                        />
-                     ))}
+                     {commentList.map((comment, index) => {
+                        if (index === commentList.length - 1)
+                           return (
+                              <div ref={ref} key={comment.id}>
+                                 <Comment
+                                    onClick={() =>
+                                       handleClickReply(comment.user.nickname)
+                                    }
+                                    user={comment.user}
+                                    data={comment}
+                                 />
+                              </div>
+                           )
+                        else
+                           return (
+                              <Comment
+                                 onClick={() =>
+                                    handleClickReply(comment.user.nickname)
+                                 }
+                                 key={comment.id}
+                                 user={comment.user}
+                                 data={comment}
+                              />
+                           )
+                     })}
+                     {commentLoading && <CommentLoading />}
                   </div>
 
                   <div className="flex px-[30px] py-[21px]">
@@ -301,9 +383,9 @@ function VideoModal() {
                      </Button>
                   </div>
                </div>
-            </Dialog>
+            </>
          )}
-      </>
+      </Dialog>
    )
 }
 

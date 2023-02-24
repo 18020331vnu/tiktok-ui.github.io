@@ -16,9 +16,8 @@ import AccountLoading from '../../feature/Account/AccountLoading'
 import AccountsList from '../../feature/Account/AccountsList'
 
 function Sidebar() {
-   const isLogin = !!localStorage.getItem('token')
+   const isLogin = !!localStorage.getItem('currentUser')
 
-   const dispatch = useDispatch()
    const followingList = useSelector((state) => state.following)
    console.log(followingList)
 
@@ -26,15 +25,18 @@ function Sidebar() {
    const [suggestAccountsList, setSuggestAccountsList] = useState([])
    const [followingAccountsList, setFollowingAccountList] = useState([])
    const [followingCount, setFollowingCount] = useState(0)
+   const [loading, setLoading] = useState(false)
 
    const [suggestedPerPage, setsuggestedPerPage] = useState(5)
    const [followingPage, setFollowingPage] = useState(1)
    useEffect(() => {
       const getSuggestAccounts = async () => {
+         setLoading(true)
          const response = await userApi.getSuggest({
             page: 1,
             per_page: suggestedPerPage,
          })
+         setLoading(false)
          setSuggestAccountsList(response.data)
       }
       getSuggestAccounts()
@@ -42,9 +44,11 @@ function Sidebar() {
 
    useEffect(() => {
       const getFollowingList = async () => {
+         setLoading(true)
          const response = await followApi.getFollowingList({
             page: followingPage,
          })
+         setLoading(false)
          setFollowingCount(response.meta.pagination.total)
          setFollowingAccountList((prev) => {
             if (followingPage === 1) return [...response.data]
@@ -71,7 +75,7 @@ function Sidebar() {
                      childStyle={'rounded'}
                   />
 
-                  {suggestAccountsList.length === 0 && <AccountLoading />}
+                  {loading && <AccountLoading />}
                   {suggestAccountsList.length < 20 && (
                      <Button
                         onClick={() => setsuggestedPerPage(20)}
@@ -105,7 +109,12 @@ function Sidebar() {
                         headerStyle={'px-2 mb-2 font-semibold text-[#161823bf]'}
                         childStyle={'rounded'}
                      ></AccountsList>
-                     {followingAccountsList.length === 0 && <AccountLoading />}
+                     {loading && <AccountLoading />}
+                     {!loading && followingAccountsList.length === 0 && (
+                        <p className="px-2 text-sm text-[#16182380]">
+                           Những tài khoản bạn follow sẽ xuất hiện tại đây
+                        </p>
+                     )}
 
                      {followingAccountsList.length != followingCount && (
                         <Button

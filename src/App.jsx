@@ -9,14 +9,15 @@ import Header from './components/Header/Header'
 import Profile from './pages/Profile/Profile'
 import Home from './pages/Home/Home'
 import { useEffect } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { getAllFollowing } from './redux/followingSlice'
 
 function App() {
    const dispatch = useDispatch()
+   const currentUser = useSelector((state) => state.auth.currentUser)
    useEffect(() => {
       dispatch(getAllFollowing())
-   }, [])
+   }, [currentUser])
 
    return (
       <div className="App">

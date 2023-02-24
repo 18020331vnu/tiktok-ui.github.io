@@ -1,8 +1,7 @@
 import React, { useRef } from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
-import { PlayIconRegular } from '../../components/Icons/VideoIcons/VideoIcons'
-// import { PlayIconRegular } from '../../Icons/VideoIcons/VideoIcons'
+import { PlayIconRegular } from '../../components/Icons/VideoIcons'
 
 function VideoPreview({ data }) {
    const videoRef = useRef(null)

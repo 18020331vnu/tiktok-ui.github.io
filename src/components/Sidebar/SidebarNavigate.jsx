@@ -6,7 +6,7 @@ import {
    HomeIconActive,
    LiveIcon,
    LiveIconActive,
-} from '../Icons/SidebarIcons/SidebarIcons'
+} from '../Icons/SidebarIcons'
 import SidebarNavigateItem from './SidebarNavigateItem'
 
 function SidebarNavigate() {

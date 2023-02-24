@@ -7,7 +7,7 @@ import {
    PlayIconFill,
    ShareIcon,
    SoundIcon,
-} from '../../components/Icons/VideoIcons/VideoIcons'
+} from '../../components/Icons/VideoIcons'
 import { Link, useNavigate } from 'react-router-dom'
 // import Button from '../../Button/Button'
 // import AccountPreview from '../../AccountPreview/AccountPreview'
@@ -91,7 +91,6 @@ function Video({ data }) {
 
    const navigate = useNavigate()
    const handleOpenVideoRoute = () => {
-      navigate(`video/${videoData.uuid}`)
       ;(async () => {
          await videoRef.current.play()
          videoRef.current.pause()
@@ -155,8 +154,9 @@ function Video({ data }) {
             <div className="flex items-end">
                <div className="relative mr-5">
                   {/* Video */}
-                  <div>
+                  <Link to={`video/${videoData.uuid}`}>
                      <video
+                        loop={true}
                         onClick={handleOpenVideoRoute}
                         ref={videoRef}
                         controls
@@ -166,7 +166,7 @@ function Video({ data }) {
                      />
                      <PlayIconFill className={'absolute top-0 left-0'} />
                      <SoundIcon className={'absolute top-0 right-0'} />
-                  </div>
+                  </Link>
                </div>
                <div>
                   {/* Actions  */}

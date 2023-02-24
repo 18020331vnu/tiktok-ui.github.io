@@ -8,7 +8,7 @@ import followApi from '../../api/followApi'
 import Popover from '../Popover/Popover'
 import { follow, unfollow } from '../../redux/followingSlice'
 import Button from '../../components/Button/Button'
-import { VerifyBagdeIcon } from '../../components/Icons/HeaderIcons/HeaderIcons'
+import { VerifyBagdeIcon } from '../../components/Icons/HeaderIcons'
 // import Popover from '../Popover/Popover'
 
 function AccountPreview({ children, data, placement, offset, bio }) {
@@ -50,7 +50,7 @@ function AccountPreview({ children, data, placement, offset, bio }) {
                      src={
                         data.avatar ===
                         'https://files.fullstack.edu.vn/f8-tiktok/'
-                           ? 'src/assets/img/avatar_tmp.jpeg'
+                           ? '/src/assets/img/avatar_tmp.jpeg'
                            : data.avatar
                      }
                      alt=""

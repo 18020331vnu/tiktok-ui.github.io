@@ -64,6 +64,7 @@ const LikeIcon = ({ className }) => (
 
 const LikeIconFill = ({ className }) => (
    <svg
+      className={className}
       width="20"
       data-e2e=""
       height="20"

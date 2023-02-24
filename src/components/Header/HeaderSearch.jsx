@@ -6,11 +6,7 @@ import AccountsList from '../../feature/Account/AccountsList'
 import Popover from '../../feature/Popover/Popover'
 import useDebounce from '../../hooks/useDebounce'
 // import AccountsList from '../AccountsList/AccountsList'
-import {
-   CloseIcon,
-   LoadingIcon,
-   SearchIcon,
-} from '../Icons/HeaderIcons/HeaderIcons'
+import { CloseIcon, LoadingIcon, SearchIcon } from '../Icons/HeaderIcons'
 // import Popover from '../Popover/Popover'
 
 function HeaderSearch() {

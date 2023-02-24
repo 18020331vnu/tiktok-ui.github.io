@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types'
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { VerifyBagdeIcon } from '../../components/Icons/HeaderIcons/HeaderIcons'
+import { VerifyBagdeIcon } from '../../components/Icons/HeaderIcons'
 
 function AccountItem({
    username,
@@ -24,7 +24,7 @@ function AccountItem({
             src={
                avatar !== 'https://files.fullstack.edu.vn/f8-tiktok/'
                   ? avatar
-                  : 'src/assets/img/avatar_tmp.jpeg'
+                  : '/src/assets/img/avatar_tmp.jpeg'
             }
             alt=""
             className="mr-3 h-10 w-10 rounded-full"

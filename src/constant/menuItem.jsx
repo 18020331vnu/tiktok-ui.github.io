@@ -9,7 +9,7 @@ import {
    RechargeIcon,
    SettingIcon,
    ThemeIcon,
-} from '../components/Icons/ProfilePopoverIcons/ProfilePopoverIcons'
+} from '../components/Icons/ProfilePopoverIcons'
 
 const MENU_ITEMS = [
    {
